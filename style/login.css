@@ -1,0 +1,41 @@
+.outFrame { width: 100%; height: 100%; overflow: hidden; position: relative; }
+.outFrame:after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url(images/loginBack.jpg) no-repeat center; background-size: cover; opacity: .9; transform-origin: 50% 50%; transition-property: transform, filter, opacity; transition-duration: 1s; }
+
+.loginFrame { float: right; width: 500px; height: 100%; background: rgba(255, 255, 255, 0.8); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
+
+.loginContent { width: 55%; margin: auto; padding-top: 100px; }
+
+h1 { text-align: right; }
+h1 img { width: 195px; }
+
+h2 { float: right; margin-top: 5px; padding: 5px 8px; background: #ffcc00; font-size: 14px; font-weight: normal; }
+
+.loginForm { padding-top: 50px; list-style: none; }
+.loginForm li { padding: 12px 0; font-size: 16px; }
+.loginForm .el-autocomplete { width: 100%; }
+.loginForm .el-input { width: 100%; font-size: 16px; }
+.loginForm .el-checkbox__label { font-size: 16px; }
+.loginForm .el-input .el-input__prefix { color: #D0F0ED; font-size: 20px; }
+.loginForm .el-input .el-input__clear { font-size: 20px; }
+.loginForm .rexButton { font-size: 16px; }
+.loginForm .rexButton[color='green'] { border: 1px solid #009688; background-color: #009688; color: #fff; }
+.loginForm .rexButton[color='green']:hover { border-color: #40c5b9; background-color: #40c5b9; }
+.loginForm .rexButton[color='green']:active { border-color: #009688; background-color: #fff; color: #009688; }
+.loginForm .buttonBar .rexButton { width: 100%; }
+
+.tipMessage { text-align: center; }
+
+.tipMessage span { display: inline-block; padding: .4em .8em; border: 1px solid #999; background: #fff; font-size: 14px; }
+.tipMessage span .loadingBlock { display: none; }
+.tipMessage span.warning { border-color: #f90; color: #f90; background: #ffefd2; }
+.tipMessage span.warning:before { content: '\f071'; }
+.tipMessage span.loading { border-color: #999; color: #666; }
+.tipMessage span.loading .loadingBlock { display: inline-block; }
+.tipMessage span.error { border-color: red; color: red; background: #f6d9d9; }
+.tipMessage span.error:before { content: '\f057'; }
+.tipMessage span.ok { border-color: #028342; color: #028342; background: #e3fff1; }
+.tipMessage span.ok:before { content: '\f058'; }
+
+.inputPassword input { -webkit-text-security: disc; }
+
+/*# sourceMappingURL=login.css.map */
