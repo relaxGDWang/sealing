@@ -29,7 +29,6 @@ var vu = new Vue({
     },
     methods: {
         doLogin: function () {
-            if (ajax.status.code === 100) return;
             //验证输入
             var checkList = ['telnumber', 'password'];
             var msg = '', occur = '', keyStr, tval;
@@ -52,43 +51,75 @@ var vu = new Vue({
                 this.setMsg({type: 'warning', text: msg, occur: occur});
                 return;
             }
-            ajax.send({
-                data: {
-                    mobile: this.input.telnumber,
-                    password: this.input.password
-                }
-            });
-        },
-        ajaxBefore: function () {
-            this.setMsg({type: 'loading', text: '正在发送登录信息...'});
-        },
-        ajaxError: function (code, text) {
-            this.setMsg({type: 'error', text: text, occur: 'all'});
-        },
-        ajaxSuccess: function (data) {
-            this.setMsg({type: 'ok', text: '管理员登录成功，页面即将跳转...'});
-            //存储登录信息
-            //localStorage.setItem(CFG.token,JSON.stringify({code:data.adminToken,live:getUnixTime()+CFG.tokenLive*1000}));
-            localStorage.setItem(CFG.admin, JSON.stringify({
-                token: data.api_token,
-                mobile: data.mobile,
-                name: data.name
-            }));
-            //写入当前登录的手机号码
-            var flagHave = false;
-            for (var i = 0; i < this.restaurants.length; i++) {
-                if (this.restaurants[i].value === this.input.telnumber) {
-                    flagHave = true;
+
+            var flag=false, mobile, username, name, type;
+            msg='';
+            switch(this.input.telnumber){
+                case 'manager':   //管理员
+                    mobile='13800000001';
+                    username=this.input.telnumber;
+                    name='张三峰';
+                    type='manager';
+                    flag=true;
                     break;
+                case 'eqmuser':    //备件管理
+                    mobile='13800000002';
+                    username=this.input.telnumber;
+                    name='李四海';
+                    type='eqmuser';
+                    flag=true;
+                    break;
+                case 'equser':     //备件
+                    mobile='13800000003';
+                    username=this.input.telnumber;
+                    name='王五山';
+                    type='equser';
+                    flag=true;
+                    break;
+                default:
+                    if (this.input.password!=='123456'){
+                        msg='登录信息错误，请检查！';
+                    }else{
+                        if (this.input.telnumber.length===11){
+                            mobile=this.input.telnumber;
+                            username='user007';
+                        }else{
+                            mobile='13811111111';
+                            username=this.input.telnumber;
+                        }
+                        name='王五山';
+                        type='user';
+                        flag=true;
+                    }
+            }
+            if (!flag){
+                this.setMsg({type: 'error', text: msg, occur: 'all'});
+            }else{
+                this.setMsg({type: 'ok', text: '用户登录成功，页面即将跳转...'});
+                //存储登录信息
+                //localStorage.setItem(CFG.token,JSON.stringify({code:data.adminToken,live:getUnixTime()+CFG.tokenLive*1000}));
+                localStorage.setItem(CFG.admin, JSON.stringify({
+                    username: username,
+                    mobile: mobile,
+                    name: name,
+                    type: type
+                }));
+                //写入当前登录的手机号码
+                var flagHave = false;
+                for (var i = 0; i < this.restaurants.length; i++) {
+                    if (this.restaurants[i].value === this.input.telnumber) {
+                        flagHave = true;
+                        break;
+                    }
                 }
+                if (flagHave === false) {
+                    this.restaurants.push({value: this.input.telnumber});
+                    localStorage.setItem('telnumber', JSON.stringify(this.restaurants));
+                }
+                setTimeout(function () {
+                    top.location.href = CFG.defaultPage+'?v='+Math.random();
+                }, 100);
             }
-            if (flagHave === false) {
-                this.restaurants.push({value: this.input.telnumber});
-                localStorage.setItem('telnumber', JSON.stringify(this.restaurants));
-            }
-            setTimeout(function () {
-                top.location.href = CFG.defaultPage+'?v='+Math.random();
-            }, 100);
         },
         setMsg: function (config) {
             if (config) {
@@ -139,14 +170,3 @@ var vu = new Vue({
         }
     }
 });
-var ajax = relaxAJAX({
-    url: PATH.login,
-    contentType: CFG.JDTYPE,
-    formater: CFG.ajaxFormater,
-    checker: CFG.ajaxReturnDo,
-    before: vu.ajaxBefore,
-    error: vu.ajaxError,
-    success: vu.ajaxSuccess
-});
-
-var dialog=relaxDialog();

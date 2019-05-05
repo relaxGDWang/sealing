@@ -253,3 +253,13 @@ $color6: #EEFFFD;
   }
 }
 
+//渐变动画
+@mixin transitionAnimate($time, $property, $function:''){
+  transition:{
+    duration: $time;
+    property: $property;
+    @if ($function!=''){
+      timing-function: $function;
+    }
+  }
+}
