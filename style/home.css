@@ -43,6 +43,30 @@
 .orderList .status.finished { background: #88ff88; }
 .orderList .status.finished:before { content: '完成'; }
 
-@media screen and (max-width: 900px) { .infoPart { width: 100%; border-left: 0; border-right: 0; } }
+.userList .status { background: #88ff88; }
+.userList .status:before { content: '正常'; }
+.userList .status.ban { background: red; color: #fff; }
+.userList .status.ban:before { content: '停用'; }
+
+.pageTitle { line-height: 40px; box-shadow: 0 -1px 0 0 #ccc inset; overflow: hidden; }
+.pageTitle .position { color: #666; float: left; }
+.pageTitle .position.fa:before { margin-right: 5px; }
+.pageTitle .menuBar { margin-left: 20px; float: left; }
+.pageTitle li { float: left; margin-right: 8px; height: 40px; line-height: 40px; color: #666; border: 1px solid transparent; padding: 0 14px; font-size: 16px; cursor: pointer; }
+.pageTitle li:hover { background: #fff; }
+.pageTitle li.sel { background: #fff; color: #009688; cursor: default; border-color: #ccc; border-bottom-color: transparent; }
+.pageTitle li.thin { background: transparent; padding: 0 5px; }
+.pageTitle li.thin .fa:before { display: inline-block; transition-property: transform; transition-duration: .5s; }
+.pageTitle li.thin.sel { border-color: transparent; }
+.pageTitle li.thin.sel .fa:before { transform: rotate(90deg); }
+.pageTitle .buttonSearch { float: right; background: #009688; color: #fff; border-radius: 4px; line-height: 30px; padding: 0 10px; cursor: pointer; }
+
+.relationPart { background: #fff; padding: 5px; overflow: hidden; }
+.relationPart li { width: 25%; float: left; padding: 5px; }
+.relationPart li label { display: inline-block; width: 60px; margin-right: 10px; text-align: right; }
+.relationPart li > .el-input, .relationPart li .el-select { width: calc(100% - 70px); max-width: 200px; }
+
+@media screen and (max-width: 900px) { .infoPart { width: 100%; border-left: 0; border-right: 0; }
+  .relationPart li { width: 50%; } }
 
 /*# sourceMappingURL=home.css.map */

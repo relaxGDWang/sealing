@@ -22,7 +22,30 @@
 </head>
 <body>
 <div id="app" class="outFrame">
-    gasket
+    <div class="pageTitle">
+        <div class="position fa fa-map-marker">测量信息 &gt; 垫片</div>
+        <ul class="menuBar nohead">
+            <li :class="{'sel':showFlag('list')}" @click="changeItem('list')">测量列表</li>
+            <li class="thin" :class="{'sel':showFlag('list2')}" @click="changeItem('list2')"><span class="fa fa-chevron-right"></span></li>
+        </ul>
+        <span class="fa fa-search buttonSearch"> 搜索</span>
+    </div>
+    <ul class="relationPart nohead">
+        <li>
+            <label>大修轮次</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>工单号</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>功位</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>状态</label><el-select placeholder="请选择">
+                <el-option v-for="item in selStatus" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
+    </ul>
 </div>
 <!-- build:js library/js/webcommon.js -->
 <script src="library/js/jquery.min.js"></script>

@@ -72,8 +72,48 @@
     &.finished:before{ content:'完成'}
   }
 }
+//用户表
+.userList{
+  .status{
+    background:#88ff88;
+    &:before{ content:'正常';}
+    &.ban{ background:red; color:#fff;}
+    &.ban:before{ content:'停用';}
+  }
+}
+
+//页面标题条
+.pageTitle{
+  line-height:40px; box-shadow:0 -1px 0 0 #ccc inset; overflow:hidden;
+  .position{
+    color:#666; float:left;
+    &.fa:before{ margin-right:5px;}
+  }
+  .menuBar{ margin-left:20px; float:left;}
+  li{ float:left; margin-right:8px; height:40px; line-height:40px; color:#666; border:1px solid transparent; padding:0 14px; font-size:16px; cursor:pointer;}
+  li:hover{ background:#fff;}
+  li.sel{ background:#fff; color:$color1; cursor:default; border-color:#ccc; border-bottom-color:transparent;}
+  li.thin{
+    background:transparent; padding:0 5px;
+    & .fa:before{ display:inline-block; transition-property: transform; transition-duration: .5s;}
+  }
+  li.thin.sel{
+    border-color:transparent;
+    & .fa:before{ transform:rotate(90deg);}
+  }
+  .buttonSearch{ float:right; background:$color1; color:#fff; border-radius:$borderRadius; line-height:30px; padding:0 10px; cursor:pointer;}
+}
+.relationPart{
+  background:#fff; padding:5px; overflow:hidden;
+  li{
+    width:25%; float:left; padding:5px;
+    label{ display:inline-block; width:60px; margin-right:10px; text-align:right;}
+    >.el-input, >.el-select{ width:calc(100% - 70px); max-width:200px;}
+  }
+}
 
 
 @media screen and (max-width:900px){
   .infoPart{ width:100%; border-left:0; border-right:0;}
+  .relationPart li{ width:50%;}
 }
