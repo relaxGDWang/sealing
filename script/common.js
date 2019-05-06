@@ -118,11 +118,6 @@ var EQUIPMENT=(function(){
         CFG.SERVER='pd';
     }
 
-    if (location.href.indexOf('main.html')>-1){
-        getEquipmentStatus();
-        return;
-    }
-
     //var token=localStorage.getItem(CFG.token);
     var token=localStorage.getItem(CFG.admin);
     var isLogin=!!(location.href.indexOf(CFG.loginPage)>-1);
@@ -131,6 +126,7 @@ var EQUIPMENT=(function(){
         //获得当前的unix时间
         //var nowTime=getUnixTime();
         //if (token.uid && token.live>nowTime){
+        /*
         if (token.token){
             if (isLogin){
                 top.location.replace(CFG.defaultPage);
@@ -139,16 +135,13 @@ var EQUIPMENT=(function(){
             getEquipmentStatus();
             return;
         }
+        */
+        return;
     }
     //alert('退回登录界面，通用检查不成功'+ nowTime);
     //localStorage.removeItem(CFG.token);
     localStorage.removeItem(CFG.admin);
     if (!isLogin) top.location.replace(CFG.loginPage);
-
-    function getEquipmentStatus(){
-        //设备状态检测
-        setInterval(EQUIPMENT.status,1000);
-    }
 })();
 
 //格式化ajax数据通用
@@ -186,82 +179,45 @@ var DFG=(function(){
         }
     }
 
-    //获得字符串日期时间
-    function datetimeDo(conf, key){
-        if (data[key]){
-            var temp;
-            switch(conf.from){
-                case 'unix':
-                    temp=getStringTime(data[key]*1000,'','-',true);
-                    break;
-                case 'unixms':
-                    temp=getStringTime(data[key],'','-',true);
-                    break;
-                case 'datetime':
-                    temp=data[key];
-                    break;
-                case 'date':
-                    temp=data[key]+' 00:00:00';
-                    break;
-            }
-            var result=temp.split(/\s/);
-            switch(conf.type){
-                case 'datetime':
-                    data[key]=result;
-                    break;
-                case 'date':
-                    data[key]=[result[0]];
-                    break;
-                case 'time':
-                    data[key]=[result[1]];
-                    break;
-            }
-        }else{
-            if (conf.emptyfill!==undefined) data[key]=[conf.emptyfill];
-        }
-    }
-    //金额格式化
-    function priceDo(conf, key){
-        var temp=data[key]-0;
-        if (isNaN(temp)){
-            if (conf.emptyfill!==undefined) data[key]=conf.emptyfill;
-        }else{
-            data[key]=temp.toFixed(conf.fixed);
-        }
-    }
-    //单选值格式化
-    function radioDo(conf, key){
-        var temp=data[key];
-        if (conf.from==='string'){
-            temp=temp-0;
-            if (isNaN(temp)) temp=data[key];
-        }
-        if (conf.value) {
-            var index = conf.value.indexOf(temp);
-            if (index >= 0) {
-                data[key] = conf.text[index];
-                return;
-            }
-        }else{
-            data[key]=conf.search[temp];
-            return;
-        }
-        data[key]='unknow';
-    }
-    //处理数组值（多选值，一般为数组）
-    function arrayDo(conf, key){
-        var temp=data[key];
-        for (var i=0; i<temp.length; i++){
-            temp[i]=conf.search[temp[i]];
-        }
-    }
-    //处理字符串加工
-    function stringDo(conf, key){
-        data[key]=conf.format.replace(/\$value\$/g,data[key]);
-    }
-
     return {
         'ext': excute,
         'solve': solveData
     };
 })();
+
+//获得用户基本信息
+function getUserInformation(obj){
+    var temp=JSON.parse(localStorage.getItem(CFG.admin));
+    var result={};
+    if (temp){
+        result.username=temp.username;
+        result.mobile=temp.mobile;
+        result.name=temp.name;
+        result.type=temp.type;
+        result.company='阳江核电有限公司（YN）';
+        result.companyFace='factory1.png';
+        result.group='中广核核电运营管理有限公司';
+        result.usercount=8;
+        switch(temp.type){
+            case 'manager':
+                result.typename='管理员';
+                result.face='face1.png';
+                break;
+            case 'eqmuser':
+                result.typename='备件管理工程师';
+                result.face='face2.png';
+                break;
+            case 'equser':
+                result.typename='备件工程师';
+                result.face='face3.png';
+                result.department='机械部';
+                break;
+            default:
+                result.typename='现场工程师';
+                result.face='face3.png';
+                result.department='机械部';
+                break;
+        }
+    }
+    return result;
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>密封邦--首页</title>
+    <!-- build:css /library/style/webcommon.css -->
+    <link rel="stylesheet" href="library/style/font-awesome.css"/>
+    <link rel="stylesheet" href="library/style/elementui2.4.11.css"/>
+    <link rel="stylesheet" href="library/style/cssreset3.css"/>
+    <!-- endbuild -->
+    <!-- build:css /style/main.css -->
+    <link rel="stylesheet" href="style/home.css"/>
+    <!-- endbuild -->
+    <!-- build:js script/configBG.js -->
+    <script src="script/configBG.js"></script>
+    <!-- endbuild -->
+    <!-- build:js script/common.js -->
+    <script src="script/common.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+<div id="app" class="outFrame">
+    <div class="userInfo infoPart">
+        <div class="imgFace">
+            <img :src="'style/images/'+user.face"/>
+        </div>
+        <span class="first">{{user.name}}</span>
+        <span class="welcome">欢迎回到密封邦，上次登录 <b>2019-04-26 12:22</b></span>
+        <span class="department"><strong v-if="user.department">{{user.department}}</strong> {{user.typename}}</span>
+    </div><div class="companyInfo infoPart">
+        <div class="imgFace">
+            <img :src="'style/images/'+user.companyFace"/>
+        </div>
+        <span class="first">{{user.company}}</span>
+        <span class="group">{{user.group}}</span>
+        <span>当前用户数：{{user.usercount}}</span>
+    </div>
+
+    <div class="listPart surveyList" v-if="user.type==='user'">
+        <h3><span class="fa fa-user-md"></span> 待处理测量信息<b>{{surveylist.length}}</b><span class="buttonDetail fa fa-angle-double-right" title="查看详情"></span></h3>
+        <el-table :data="surveylist" border class="listTable">
+            <el-table-column label="#" width="40" key="colIndex">
+                <template slot-scope="scope">
+                    <span>{{scope.$index+1}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="status" label="状态">
+                <template slot-scope="scope">
+                    <span class="status" :class="scope.row.status"></span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="round" label="大修轮次"></el-table-column>
+            <el-table-column prop="number" label="工单号"></el-table-column>
+            <el-table-column prop="position" label="功位"></el-table-column>
+            <el-table-column prop="maintype" label="测量"></el-table-column>
+            <el-table-column prop="type" label="类型"></el-table-column>
+            <el-table-column prop="recordtime" label="记录时间" width="150"></el-table-column>
+            <el-table-column label="操作" width="50">
+                <template slot-scope="scope">
+                    <span class="fa fa-eye"></span>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <div class="listPart" v-if="user.type==='equser'">
+        <h3><span class="fa fa-check-square-o"></span> 待审核信息<b>{{checklist.length}}</b><span class="buttonDetail fa fa-angle-double-right" title="查看详情"></span></h3>
+        <el-table :data="checklist" border class="listTable">
+            <el-table-column label="#" width="40" key="colIndex">
+                <template slot-scope="scope">
+                    <span>{{scope.$index+1}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="round" label="大修轮次"></el-table-column>
+            <el-table-column prop="number" label="工单号"></el-table-column>
+            <el-table-column prop="position" label="功位"></el-table-column>
+            <el-table-column prop="maintype" label="测量"></el-table-column>
+            <el-table-column prop="type" label="类型"></el-table-column>
+            <el-table-column prop="recordtime" label="测量时间" width="150"></el-table-column>
+            <el-table-column prop="recorder" label="录入"></el-table-column>
+            <el-table-column prop="purchase" label="采购" width="170"></el-table-column>
+            <el-table-column label="操作" width="50">
+                <template slot-scope="scope">
+                    <span class="fa fa-eye"></span>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <div class="listPart orderList" v-if="user.type==='equser'">
+        <h3><span class="fa fa-shopping-cart"></span> 近期采购信息<b>{{orderlist.length}}</b><span class="buttonDetail fa fa-angle-double-right" title="查看详情"></span></h3>
+        <el-table :data="orderlist" border class="listTable">
+            <el-table-column label="#" width="40" key="colIndex">
+                <template slot-scope="scope">
+                    <span>{{scope.$index+1}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="status" label="状态" width="84">
+                <template slot-scope="scope">
+                    <span class="status" :class="scope.row.status"></span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="round" label="大修轮次"></el-table-column>
+            <el-table-column prop="number" label="工单号"></el-table-column>
+            <el-table-column prop="position" label="功位"></el-table-column>
+            <el-table-column prop="partno" label="物料编码"></el-table-column>
+            <el-table-column prop="department" label="部门"></el-table-column>
+            <el-table-column prop="description" label="产品描述" width="170"></el-table-column>
+            <el-table-column prop="material" label="材质"></el-table-column>
+            <el-table-column prop="ruler" label="尺寸" width="140"></el-table-column>
+            <el-table-column prop="level" label="质保等级"></el-table-column>
+            <el-table-column prop="count" label="数量" width="50"></el-table-column>
+            <el-table-column prop="ordertime" label="下单日期" width="140"></el-table-column>
+            <el-table-column prop="sendtime" label="发货日期" width="140"></el-table-column>
+            <el-table-column prop="finishedtime" label="完成日期" width="140"></el-table-column>
+            <el-table-column fixed="right" label="操作" width="50">
+                <template slot-scope="scope">
+                    <span class="fa fa-eye"></span>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+
+    <div class="listPart orderList">
+        <h3><span class="fa fa-shopping-cart"></span> 近期采购信息<b>{{checklist.length}}</b><span class="buttonDetail fa fa-angle-double-right" title="查看详情"></span></h3>
+        <el-table :data="orderlist" border class="listTable">
+            <el-table-column label="#" width="40" key="colIndex">
+                <template slot-scope="scope">
+                    <span>{{scope.$index+1}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="status" label="状态" width="84">
+                <template slot-scope="scope">
+                    <span class="status" :class="scope.row.status"></span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="round" label="大修轮次"></el-table-column>
+            <el-table-column prop="number" label="工单号"></el-table-column>
+            <el-table-column prop="position" label="功位"></el-table-column>
+            <el-table-column prop="partno" label="物料编码"></el-table-column>
+            <el-table-column prop="department" label="部门"></el-table-column>
+            <el-table-column prop="description" label="产品描述" width="170"></el-table-column>
+            <el-table-column prop="material" label="材质"></el-table-column>
+            <el-table-column prop="ruler" label="尺寸" width="140"></el-table-column>
+            <el-table-column prop="level" label="质保等级"></el-table-column>
+            <el-table-column prop="count" label="数量" width="50"></el-table-column>
+            <el-table-column prop="ordertime" label="下单日期" width="140"></el-table-column>
+            <el-table-column prop="sendtime" label="发货日期" width="140"></el-table-column>
+            <el-table-column prop="finishedtime" label="完成日期" width="140"></el-table-column>
+            <el-table-column fixed="right" label="操作" width="50">
+                <template slot-scope="scope">
+                    <span class="fa fa-eye"></span>
+                </template>
+            </el-table-column>
+        </el-table>
+    </div>
+</div>
+<!-- build:js library/js/webcommon.js -->
+<script src="library/js/jquery.min.js"></script>
+<script src="library/js/vue.min.js"></script>
+<script src="library/js/rexfunction.js"></script>
+<script src="library/js/rexajax2.js"></script>
+<script src="library/js/rexdialog.js"></script>
+<script src="library/js/elementui2.4.11.js"></script>
+<!-- endbuild -->
+<!-- build:js  script/main.js -->
+<script src="script/home.js"></script>
+<!-- endbuild -->
+</body>
+</html>

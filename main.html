@@ -23,41 +23,72 @@
 <body>
 <div id="app" class="admFrame">
     <header>
-        <h1>弘仓物联后台管理</h1>
-        <div class="userinfor fa fa-chevron-right">
-            <strong class="fa fa-user userface">Admin</strong>
-            <span>[系统管理员]</span>
-            <ul class="submenu">
-                <li><a href="javascript:void(0);" class="fa fa-list-alt"> 查看我的订单</a></li>
-                <li><a href="javascript:void(0);" class="fa fa-edit"> 编辑基础信息</a></li>
-                <li><a href="javascript:void(0);" class="fa fa-power-off"> 退出登录</a></li>
-            </ul>
+        <span class="fa fa-dedent opButton" title="展开&#47;收缩左侧菜单"></span>
+        <span class="fa fa-refresh opButton" title="刷新当前页面"></span>
+        <div class="extButtonBar">
+            <span class="fa fa-check-square-o opButton" title="测量信息审核"></span>
+            <span class="fa fa-upload opButton" title="上传列表"></span>
+            <span class="fa fa-bell-o opButton" title="通知公告"></span>
+            <span class="fa fa-question-circle opButton" title="帮助手册"></span>
+            <div class="userinfor fa fa-chevron-right">
+                <strong class="fa fa-user userface">{{user.name}}</strong>
+                <span>[{{user.typename}}]</span>
+                <ul class="submenu">
+                    <li><a href="javascript:void(0);" class="fa fa-list-alt"> 基本资料</a></li>
+                    <li><a href="javascript:void(0);" class="fa fa-edit"> 修改密码</a></li>
+                    <li><a href="javascript:void(0);" class="fa fa-chain"> 关联微信</a></li>
+                    <li><a href="javascript:void(0);" class="fa fa-power-off" @click="loginOut"> 退出登录</a></li>
+                </ul>
+            </div>
         </div>
     </header>
     <nav class="leftSide">
-        <h2></h2>
+        <h2>
+            <img src="style/images/LOGO2.png"/>
+            <span>企业版 v1.0</span>
+            <strong>Sealingbang</strong>
+        </h2>
         <ul class="navList">
+            <li :class="{'active':isActive('home')}">
+                <a href="javascript:void(0);" @click="showPage('home')"><span class="fa fa-home"></span> 系统首页</a>
+            </li>
             <li class="more">
-                <a href="javascript:void(0);" class="fa fa-chevron-right">菜单一</a>
+                <a href="javascript:void(0);" class="fa fa-chevron-right" @click="chkShow($event)"><span class="fa fa-th-large"></span> 基础数据</a>
                 <ul>
-                    <li><a href="javascript:void(0);">子菜单1</a></li>
-                    <li><a href="javascript:void(0);">子菜单1</a></li>
-                    <li><a href="javascript:void(0);">子菜单1</a></li>
+                    <li :class="{'active':isActive('user')}"><a href="javascript:void(0);" @click="showPage('user')">人员管理</a></li>
+                    <li :class="{'active':isActive('position')}"><a href="javascript:void(0);" @click="showPage('position')">功位管理</a></li>
                 </ul>
             </li>
-            <li><a href="javascript:void(0);">菜单二</a></li>
-            <li><a href="javascript:void(0);">菜单三</a></li>
-            <li><a href="javascript:void(0);">菜单四</a></li>
+            <li class="more">
+                <a href="javascript:void(0);" class="fa fa-chevron-right" @click="chkShow($event)"><span class="fa fa-user-md"></span> 测量信息</a>
+                <ul>
+                    <li :class="{'active':isActive('gasket')}"><a href="javascript:void(0);" @click="showPage('gasket')">垫片</a></li>
+                    <li :class="{'active':isActive('fill')}"><a href="javascript:void(0);" @click="showPage('fill')">填料</a></li>
+                    <li :class="{'active':isActive('oring')}"><a href="javascript:void(0);" @click="showPage('oring')">O形圈</a></li>
+                    <li :class="{'active':isActive('matel')}"><a href="javascript:void(0);" @click="showPage('matel')">金属环垫</a></li>
+                </ul>
+            </li>
+            <li :class="{'active':isActive('check')}">
+                <a href="javascript:void(0);" @click="showPage('check')"><span class="fa fa-check-square-o"></span> 测量审核</a>
+            </li>
+            <li :class="{'active':isActive('orders')}">
+                <a href="javascript:void(0);" @click="showPage('orders')"><span class="fa fa-shopping-cart"></span> 采购订单</a>
+            </li>
+            <li :class="{'active':isActive('search')}">
+                <a href="javascript:void(0);" @click="showPage('search')"><span class="fa fa-search"></span> 综合查询</a>
+            </li>
+            <li :class="{'active':isActive('BMC')}">
+                <a href="javascript:void(0);" @click="showPage('BMC')"><span class="fa fa-circle-o"></span> BMC产品</a>
+            </li>
+            <li :class="{'active':isActive('wiki')}">
+                <a href="javascript:void(0);" @click="showPage('wiki')"><span class="fa fa-suitcase"></span> 知识库</a>
+            </li>
         </ul>
     </nav>
     <div class="rightSide"></div>
-
-    <ul class="navBar">
-        <li class="sel">打开栏目1</li>
-        <li>打开栏目2</li>
-        <li>打开栏目3</li>
-    </ul>
-    <iframe src="about:blank"></iframe>
+    <div class="mainContent">
+        <iframe id="mainPage"></iframe>
+    </div>
     <footer></footer>
 </div>
 <!-- build:js library/js/webcommon.js -->

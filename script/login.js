@@ -87,7 +87,7 @@ var vu = new Vue({
                             mobile='13811111111';
                             username=this.input.telnumber;
                         }
-                        name='王五山';
+                        name='孙六韬';
                         type='user';
                         flag=true;
                     }

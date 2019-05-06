@@ -1,47 +1,48 @@
 var vu=new Vue({
     el: '#app',
     data:{
-        username:'',
-        equipment:{
-            printer:'',
-            counter:'',
-            neter:''
+        menu:'home',
+        user:{},
+        url:{
+            home:'home.html',
+            user:'user.html',
+            position:'position.html',
+            gasket:'gasket.html',
+            fill:'fill.html',
+            oring:'oring.html',
+            matel:'matel.html'
         },
-        version:''
+        page:''
     },
     methods:{
-        openSetting: function(){   //打开app设置界面
-            try{
-                window.register_js.exitwebview();
-            }catch(e){
-                dialog.open('information',{cname:'warning',content:'请在APP中使用该功能。', btncancel:''});
+        loginOut: function(){
+            localStorage.removeItem(CFG.admin);
+            location.href='login.html';
+        },
+        chkShow: function(e){
+            if (e.target.parentNode.className.indexOf('sel')>=0){
+                e.target.parentNode.className='more';
+            }else{
+                e.target.parentNode.className='more sel';
             }
         },
-        loginOut: function(){
-            var that=this;
-            dialog.open('information',{
-                content:'是否注销当前登录的用户 '+ that.username +' ？',
-                cname:'sure',
-                closeCallback:function(id,typeStr,btnType){
-                    if (btnType==='sure'){
-                        localStorage.removeItem(CFG.admin);
-                        //top.location.href=CFG.loginPage+'?v='+Math.random();
-                        location.reload();
-                    }
-                }
-            });
+        isActive: function(str){
+            return this.menu===str;
         },
-        loginIn: function(){
-            top.location.href=CFG.loginPage+'?v='+Math.random();
+        showPage: function(str){
+            this.menu=str;
+            $('#mainPage').attr('src',vu.url[str]);
         }
     },
     watch: {
     },
     beforeMount: function () {
-        var temp=JSON.parse(localStorage.getItem(CFG.admin));
-        if (temp) this.username=temp.name;
-        this.version=CFG.VER;
+        var result=getUserInformation();
+        Vue.set(this,'user',result);
     }
 });
 
 var dialog=relaxDialog();
+$(function(){
+    $('#mainPage').attr('src',vu.url[vu.menu]);
+});

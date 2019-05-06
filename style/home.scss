@@ -1,0 +1,79 @@
+@charset "UTF-8";
+@import '../library/style/config2.scss';
+.outFrame{ background:#f0f0f0; width:100%; height:100%; overflow:hidden; position:relative; padding:10px;}
+.infoPart{
+  display:inline-block; width:50%; border-left:10px solid transparent; background:#fff; background-clip:padding-box; margin-bottom:10px; padding:10px;
+  &:first-child{ border-left:0; border-right:10px solid transparent; background:#fff;}
+  .imgFace{
+    width:80px; float:left; position:relative;
+    img{ display:block; width:100%;}
+  }
+  >span{
+    display:block; margin-left:90px; margin-top:6px;
+  }
+  .first{ font-size:18px;}
+  .welcome{
+    color:#666;
+    b{ color:$color1;}
+  }
+  .group{ color:#999;}
+  .department{
+    strong{ border-right:1px solid #ccc; font-weight:normal; padding-right:15px; margin-right:12px;}
+  }
+}
+.userInfo {
+  .imgFace img{
+    border-radius: 40px;
+  }
+  .first{ font-weight:bold;}
+}
+.companyInfo{
+  .imgFace img{
+    border-radius:$borderRadius;
+  }
+}
+
+.listPart{
+  margin-bottom:10px;
+  h3{
+    line-height:40px; padding-top:4px; background:#fff; padding-left:20px; position:relative; color:#666; font-size:16px;
+    b{ position:absolute; left:5px; top:5px; font-size:12px; background:red; color:#fff; line-height:16px; width:16px; text-align:center; border-radius:50%; font-weight:normal; }
+    .fa{ font-size:20px; color:$color1;}
+    .buttonDetail{ position:absolute; right:10px; top:10px; line-height:26px; width:40px; text-align:center; background:$color1; color:#fff; border-radius:$borderRadius;}
+  }
+}
+//表格
+.listTable{
+  width: 100%;
+  th{ background:$color1; color:#fff;}
+  th:first-child, th:last-child, td:first-child, td:last-child{ text-align:center;}
+  tr:nth-child(even){ background: $color6;}
+  tr:nth-child(odd){ background: $color5;}
+  &.el-table td{ padding-top:6px; padding-bottom:6px;}
+  &.el-table th{ padding-top:8px; padding-bottom:8px;}
+  &.el-table th, &.el-table td{ border-color:#fff;}
+  .status{display:inline-block; width:60px; text-align:center; line-height:28px; background:#ccc; border-radius:$borderRadius;}
+}
+//测量表
+.surveyList{
+  .status{
+    &:before{ content:'未提交';}
+    &.back{ background:red; color:#fff;}
+    &.back:before{ content:'退回';}
+  }
+}
+//订单表
+.orderList{
+  .status{
+    &:before{ content:'待发货';}
+    &.send{ background:$color4;}
+    &.send:before{ content:'已发货';}
+    &.finished{ background:#88ff88;}
+    &.finished:before{ content:'完成'}
+  }
+}
+
+
+@media screen and (max-width:900px){
+  .infoPart{ width:100%; border-left:0; border-right:0;}
+}

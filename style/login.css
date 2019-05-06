@@ -1,7 +1,7 @@
 .outFrame { width: 100%; height: 100%; overflow: hidden; position: relative; }
 .outFrame:after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: url(images/loginBack.jpg) no-repeat center; background-size: cover; opacity: .9; transform-origin: 50% 50%; transition-property: transform, filter, opacity; transition-duration: 1s; }
 
-.loginFrame { float: right; width: 500px; height: 100%; background: rgba(255, 255, 255, 0.8); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
+.loginFrame { float: right; width: 500px; margin-right: 20px; height: 100%; background: rgba(255, 255, 255, 0.8); box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
 
 .loginContent { width: 55%; margin: auto; padding-top: 100px; }
 
