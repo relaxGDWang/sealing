@@ -8,10 +8,10 @@ var vu=new Vue({
             {status:'back',round:'Y1001',number:'201904160002',position:'Y5REA-608-VB',maintype:'垫片',type:'非金属平垫片',recordtime:'2019-04-08 19:32'}
         ],
         checklist:[
-            {round:'Y5001',number:'201904160001',position:'Y5LHQ-901-PL',maintype:'垫片',type:'非金属平垫片',recordtime:'2019-04-07 20:22',recorder:'老张',purchase:'--'},
-            {round:'Y5001',number:'201904160001',position:'Y5LHQ-901-PL',maintype:'垫片',type:'非金属平垫片',recordtime:'2019-04-07 20:25',recorder:'老张',purchase:'--'},
-            {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',maintype:'法兰',type:'突面法兰',recordtime:'2019-04-06 21:23',recorder:'老张',purchase:'垫片 BMC1101N'},
-            {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',maintype:'法兰',type:'凹面/凸面法兰',recordtime:'2019-04-06 21:23',recorder:'老张',purchase:'垫片 BMC1101N'},
+            {round:'Y5001',number:'201904160001',position:'Y5LHQ-901-PL',maintype:'垫片',type:'非金属平垫片',recordtime:'2019-04-07 20:22',recorder:'孙六韬',purchase:'--'},
+            {round:'Y5001',number:'201904160001',position:'Y5LHQ-901-PL',maintype:'垫片',type:'非金属平垫片',recordtime:'2019-04-07 20:25',recorder:'孙六韬',purchase:'--'},
+            {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',maintype:'法兰',type:'突面法兰',recordtime:'2019-04-06 21:23',recorder:'孙六韬',purchase:'垫片 BMC1101N'},
+            {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',maintype:'法兰',type:'凹面/凸面法兰',recordtime:'2019-04-06 21:23',recorder:'钱一多',purchase:'垫片 BMC1101N'},
         ],
         orderlist:[
             {status:'',round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',partno:'--',department:'机械部',description:'垫片 BMC1101N',material:'',ruler:'30*40*3.3',level:'C1',count:5,ordertime:'2019-04-07 20:22',sendtime:'--',finishedtime:'--'},

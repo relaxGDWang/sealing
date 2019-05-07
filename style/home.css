@@ -32,10 +32,15 @@
 .listTable.el-table th { padding-top: 8px; padding-bottom: 8px; }
 .listTable.el-table th, .listTable.el-table td { border-color: #fff; }
 .listTable .status { display: inline-block; width: 60px; text-align: center; line-height: 28px; background: #ccc; border-radius: 4px; }
+.listTable .opButton { cursor: pointer; }
 
 .surveyList .status:before { content: '未提交'; }
 .surveyList .status.back { background: red; color: #fff; }
 .surveyList .status.back:before { content: '退回'; }
+.surveyList .status.finished { background: #88ff88; }
+.surveyList .status.finished:before { content: '完成'; }
+.surveyList .status.send { background: #ffcc00; }
+.surveyList .status.send:before { content: '待审核'; }
 
 .orderList .status:before { content: '待发货'; }
 .orderList .status.send { background: #ffcc00; }
@@ -60,13 +65,50 @@
 .pageTitle li.thin.sel { border-color: transparent; }
 .pageTitle li.thin.sel .fa:before { transform: rotate(90deg); }
 .pageTitle .buttonSearch { float: right; background: #009688; color: #fff; border-radius: 4px; line-height: 30px; padding: 0 10px; cursor: pointer; }
+.pageTitle.tiny { box-shadow: none; }
 
-.relationPart { background: #fff; padding: 5px; overflow: hidden; }
+.relationPart { background: #fff; padding: 5px; overflow: hidden; border-bottom: 1px dashed #ccc; }
 .relationPart li { width: 25%; float: left; padding: 5px; }
-.relationPart li label { display: inline-block; width: 60px; margin-right: 10px; text-align: right; }
-.relationPart li > .el-input, .relationPart li .el-select { width: calc(100% - 70px); max-width: 200px; }
+.relationPart li > label { display: inline-block; width: 60px; margin-right: 10px; text-align: right; }
+.relationPart li > .el-input, .relationPart li > .el-select { width: calc(100% - 70px); max-width: 200px; }
+
+.listShow { background: #fff; }
+
+.extButtonBar { padding: 10px 5px; overflow: hidden; }
+.extButtonBar .left { float: left; }
+.extButtonBar .right { float: right; }
+.extButtonBar .fa { display: inline-block; color: #fff; background: #009688; border-radius: 4px; padding: 0 5px; line-height: 30px; cursor: pointer; }
+
+.listOPMenu { position: absolute; background: #fff; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); top: 10px; left: 100px; z-index: 20; width: 120px; border: 1px solid #fff; border-radius: 4px; overflow: hidden; }
+.listOPMenu li { padding: 8px; padding-left: 15px; background: #333; color: #fff; margin-top: 1px; cursor: pointer; }
+.listOPMenu li .fa { opacity: .5; margin-right: 3px; }
+.listOPMenu li:first-child { margin-top: 0; }
+.listOPMenu li:hover { background: #666; }
+
+.cutpage { padding: 10px; text-align: center; }
+
+.formPart { background: #fff; padding: 5px; overflow: hidden; border-top: 1px solid #ccc; }
+.formPart li { width: 33%; float: left; padding: 5px; white-space: nowrap; }
+.formPart li > label { display: inline-block; width: 100px; margin-right: 10px; text-align: right; }
+.formPart li > label.request:before, .formPart li > span.request:before { content: '*'; font-size: 18px; color: red; font-weight: bold; }
+.formPart li > label.down { position: relative; top: 5px; }
+.formPart li > .el-input, .formPart li > .el-select { width: calc(100% - 110px); max-width: 320px; }
+.formPart li > .el-checkbox-group { display: inline-block; }
+.formPart li.r2 { width: 66%; }
+.formPart li.r3 { width: 100%; }
+.formPart .typeSelect > .show1 { width: 60px; }
+.formPart .typeSelect > .show0 { width: 100px; }
+.formPart .typeSelect > span { margin-left: 10px; margin-right: 5px; }
+.formPart .typeSelect .el-input__inner { padding: 0 5px; }
+.formPart .typeSelect > .el-input { width: calc(100% - 240px); min-width: 70px; max-width: 208px; }
+.formPart .gasketSelect > .level1 { width: 50%; max-width: 220px; min-width: 80px; }
+.formPart .gasketSelect > .level2 { width: 40%; max-width: 140px; min-width: 70px; }
 
 @media screen and (max-width: 900px) { .infoPart { width: 100%; border-left: 0; border-right: 0; }
-  .relationPart li { width: 50%; } }
+  .relationPart li { width: 50%; }
+  .formPart li { width: 50%; }
+  .formPart li.r2 { width: 100%; } }
+@media screen and (max-width: 620px) { .relationPart li { width: 100%; }
+  .formPart li { width: 100%; } }
 
 /*# sourceMappingURL=home.css.map */

@@ -45,6 +45,77 @@
                 <el-option v-for="item in selStatus" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
         </li>
+        <li>
+            <label>录入人</label><el-select placeholder="请选择">
+                <el-option v-for="item in selUser" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
+    </ul>
+    <div class="listShow surveyList" @click="hideMenu($event)" v-if="menu==='list'">
+        <div class="extButtonBar">
+            <div class="left">
+                <span class="fa fa-th-list"> 批量提交审批</span>
+            </div>
+            <div class="right">
+                <a href="gasketEdit.html" class="fa fa-plus"> 新增测量信息</a>
+            </div>
+        </div>
+        <el-table :data="surveylist" border class="listTable">
+            <el-table-column fixed="left" type="selection" width="50" key="colSelect"></el-table-column>
+            <el-table-column prop="status" label="状态" width="85" key="status">
+                <template slot-scope="scope">
+                    <span class="status" :class="scope.row.status"></span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="round" label="大修轮次" key="round"></el-table-column>
+            <el-table-column prop="number" label="工单号" key="number"></el-table-column>
+            <el-table-column prop="position" label="功位" key="position"></el-table-column>
+            <el-table-column prop="maintype" label="测量" key="maintype"></el-table-column>
+            <el-table-column prop="type" label="类型" key="type"></el-table-column>
+            <el-table-column prop="recordtime" label="记录时间" width="150" key="recordtime"></el-table-column>
+            <el-table-column prop="recorder" label="录入" key="recorder"></el-table-column>
+            <el-table-column fixed="right" label="操作" width="50" key="op">
+                <template slot-scope="scope">
+                    <span class="fa fa-ellipsis-h opButton" @click="showMenu($event,scope.$index)"></span>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="cutpage">
+            <el-pagination background layout="prev, pager, next" :total="33"></el-pagination>
+        </div>
+    </div>
+
+    <div class="listShow surveyList" @click="hideMenu($event)" v-if="menu==='list2'">
+        <div class="extButtonBar">
+            <div class="left">
+                <span class="fa fa-list-ul"> 批量引用</span>
+            </div>
+        </div>
+        <el-table :data="surveyAsset" border class="listTable">
+            <el-table-column fixed="left" type="selection" width="50" key="colSelect2"></el-table-column>
+            <el-table-column prop="round" label="大修轮次" key="round2"></el-table-column>
+            <el-table-column prop="number" label="工单号" key="number2"></el-table-column>
+            <el-table-column prop="position" label="功位" key="position2"></el-table-column>
+            <el-table-column prop="maintype" label="测量" key="maintype2"></el-table-column>
+            <el-table-column prop="type" label="类型" key="type2"></el-table-column>
+            <el-table-column prop="recordtime" label="记录时间" key="recordtime2" width="150"></el-table-column>
+            <el-table-column fixed="right" label="操作" key="op2" width="50">
+                <template slot-scope="scope">
+                    <span class="fa fa-ellipsis-h opButton" @click="showMenu($event,scope.$index)"></span>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="cutpage">
+            <el-pagination background layout="prev, pager, next" :total="1"></el-pagination>
+        </div>
+    </div>
+    <ul class="listOPMenu nohead" ref="menu" v-if="selID!==''" :style="getStyle">
+        <li v-if="(power===3 || power==1) && menu==='list'"><span class="fa fa-envelope"></span> 提交审核</li>
+        <li><span class="fa fa-pencil"></span> 查看信息</li>
+        <li v-if="(power===3 || power==2) && menu==='list'"><span class="fa fa-bitbucket"></span> 删除信息</li>
+        <li v-if="menu==='list2'"><span class="fa fa-arrow-circle-left"></span> 引用信息</li>
+        <li v-if="menu==='list'"><span class="fa fa-list-alt"></span> 操作日志</li>
+        <li><span class="fa fa-folder-open"></span> 附件信息</li>
     </ul>
 </div>
 <!-- build:js library/js/webcommon.js -->

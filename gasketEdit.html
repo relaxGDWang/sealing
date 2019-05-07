@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>密封邦--测量信息编辑 垫片</title>
+    <!-- build:css /library/style/webcommon.css -->
+    <link rel="stylesheet" href="library/style/font-awesome.css"/>
+    <link rel="stylesheet" href="library/style/elementui2.4.11.css"/>
+    <link rel="stylesheet" href="library/style/cssreset3.css"/>
+    <!-- endbuild -->
+    <!-- build:css /style/main.css -->
+    <link rel="stylesheet" href="style/home.css"/>
+    <!-- endbuild -->
+    <!-- build:js script/configBG.js -->
+    <script src="script/configBG.js"></script>
+    <!-- endbuild -->
+    <!-- build:js script/common.js -->
+    <script src="script/common.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+<div id="app" class="outFrame">
+    <div class="pageTitle tiny">
+        <div class="position fa fa-map-marker">测量信息 &gt; 垫片 > 新增信息</div>
+    </div>
+
+    <div class="listPart">
+        <h3>基本信息</h3>
+        <ul class="formPart nohead">
+            <li>
+                <label class="request">功能位置代码</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li class="typeSelect">
+                <label>维修类型</label><el-select placeholder="请选择" v-model="search.fillType" :class="'show'+search.fillType">
+                    <el-option v-for="item in fillType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+                <template v-if="search.fillType==='1'">
+                    <span class="request">轮次</span>
+                    <el-input placeholder="请输入内容"></el-input>
+                </template>
+            </li>
+            <li>
+                <label class="request">工单号</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li>
+                <label class="request">物料编码</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li>
+                <label class="request down">测量对象</label><el-checkbox-group v-model="search.object">
+                    <el-checkbox-button label="gasket" key="gasket">垫片</el-checkbox-button>
+                    <el-checkbox-button label="flange" key="flange">法兰</el-checkbox-button>
+                </el-checkbox-group>
+            </li>
+            <li>
+                <label>是否为标准</label><el-select placeholder="请选择" v-model="search.standard">
+                    <el-option v-for="item in standard" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+            </li>
+        </ul>
+    </div>
+
+    <div class="listPart">
+        <h3>垫片信息</h3>
+        <ul class="formPart nohead">
+            <li class="gasketSelect r2">
+                <label :class="{'request':isRequest}">垫片类型</label><el-select placeholder="请选择" v-model="search.gasketType" class="level1">
+                    <el-option v-for="item in gasketType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+                <el-select placeholder="请选择" v-model="search.gasketSubType" v-if="search.gasketSubType" class="level2">
+                    <el-option v-for="item in gasketSubType[search.gasketType]" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+            </li>
+            <li>
+                <label>垫片材质</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li class="r3">
+                <label :class="{'request':isRequest2}">上传附件</label><el-input type="file" placeholder="请选择上传文件" v-model="search.upload1"></el-input>
+                <el-button type="info" @click="search.upload1=''">取消</el-button>
+            </li>
+            <li class="r3">
+                <div><label :class="{'request':}">填写尺寸信息</label></div>
+                <div></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- build:js library/js/webcommon.js -->
+<script src="library/js/jquery.min.js"></script>
+<script src="library/js/vue.min.js"></script>
+<script src="library/js/rexfunction.js"></script>
+<script src="library/js/rexajax2.js"></script>
+<script src="library/js/rexdialog.js"></script>
+<script src="library/js/elementui2.4.11.js"></script>
+<!-- endbuild -->
+<!-- build:js  script/main.js -->
+<script src="script/gasketEdit.js"></script>
+<!-- endbuild -->
+</body>
+</html>
