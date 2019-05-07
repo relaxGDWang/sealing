@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import '../library/style/config2.scss';
 .outFrame{ background:#f0f0f0; width:100%; height:100%; overflow:hidden; position:relative; padding:10px;}
+.outFrame2{ background:#f0f0f0; width:100%; height:100%; overflow:auto; position:relative; padding:10px;}
 .infoPart{
   display:inline-block; width:50%; border-left:10px solid transparent; background:#fff; background-clip:padding-box; margin-bottom:10px; padding:10px;
   &:first-child{ border-left:0; border-right:10px solid transparent; background:#fff;}
@@ -40,7 +41,15 @@
     b{ position:absolute; left:5px; top:5px; font-size:12px; background:red; color:#fff; line-height:16px; width:16px; text-align:center; border-radius:50%; font-weight:normal; }
     .fa{ font-size:20px; color:$color1;}
     .buttonDetail{ position:absolute; right:10px; top:10px; line-height:26px; width:40px; text-align:center; background:$color1; color:#fff; border-radius:$borderRadius;}
+    .tipMessage{
+      float:right; font-size:14px; padding-right:10px;
+      &.warning{ color:#ee8c00;}
+      &.warning:before{ color:$color4;}
+    }
+    .folding{ margin-left:5px; position:relative; top:1px; line-height:30px; cursor:pointer;}
+    .folding.hide{ transform:rotate(180deg);}
   }
+  &:hover h3{ background:$color5;}
 }
 //表格
 .listTable{
@@ -107,7 +116,7 @@
     & .fa:before{ transform:rotate(90deg);}
   }
   .buttonSearch{ float:right; background:$color1; color:#fff; border-radius:$borderRadius; line-height:30px; padding:0 10px; cursor:pointer;}
-  &.tiny{ box-shadow:none;}
+  &.tiny{ box-shadow:none; line-height:20px; padding-bottom:10px;}
 }
 //查询条件输入块
 .relationPart{
@@ -146,17 +155,25 @@
 //表单内容输入
 .formPart{
   background:#fff; padding:5px; overflow:hidden; border-top:1px solid #ccc;
-  li{
+  .listPart:hover &{ background:$color6; border-top-color:$color1;}
+  >li{
     width:33%; float:left; padding:5px; white-space: nowrap;
     >label{ display:inline-block; width:100px; margin-right:10px; text-align:right;}
     >label.request:before,>span.request:before{ content:'*'; font-size:18px; color:red; font-weight:bold;}
     >label.down{ position:relative; top:5px;}
-    >.el-input, >.el-select{ width:calc(100% - 110px); max-width:320px;}
+    >label.up{ position:relative; top:-90px;}
+    >.el-input, >.el-select, .el-textarea{ width:calc(100% - 110px); max-width:320px;}
     >.el-checkbox-group{ display:inline-block;}
   }
 
-  li.r2{ width:66%;}
-  li.r3{ width:100%;}
+  >li.r2{ width:66%;}
+  >li.r3{
+    width:100%;
+    .el-textarea{ width:calc(100% - 110px); max-width:900px;}
+  }
+  >li.cll{ clear:left;}
+  >li.clr{ clear:right;}
+  >li.cla{ clear:both;}
 
   //维修类型填写组样式
   .typeSelect{
@@ -172,6 +189,28 @@
     >.level1{ width:50%; max-width:220px; min-width:80px;}
     >.level2{ width:40%; max-width:140px; min-width:70px;}
   }
+
+  //图片相关的类型选择告警信息
+  .showWarning{ color:#ee8c00;}
+  .showWarning:before{ color:$color4;}
+
+  //其他信息填写项
+  .inputSelect{
+    >.el-input{ width:calc(100% - 190px); max-width:260px;}
+    >.el-select{ width:80px;}
+  }
+
+  //其他信息填写中的详细信息
+  .inputInput{
+    >.el-input{ width:calc(50% - 95px); max-width:130px;}
+    .el-input__inner{ padding:0 5px;}
+    >span{ margin-left:15px; margin-right:10px;}
+  }
+}
+//产品图片
+.imgShow{
+  img{ display:block; max-width:90%; max-height:400px; min-width:350px; margin:0 auto;}
+  &.tall img{ max-height:600px;}
 }
 
 @media screen and (max-width:900px){

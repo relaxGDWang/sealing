@@ -32,7 +32,8 @@ var vu=new Vue({
             x:'',
             y:''
         },
-        power:0
+        power:0,
+        nowObject:''
     },
     computed:{
         getStyle: function(){
@@ -70,12 +71,21 @@ var vu=new Vue({
             }else{
                 this.power=this.power & 1;
             }
+            this.nowObject=temp;
             protectEvent(e);
         },
         hideMenu: function(e){
             if (this.selID==='')  return;
             if (e.target===this.$refs.menu || JS_contains(this.$refs.menu, e.target)) return;
             this.selID='';
+        },
+        //跳转到编辑/查看页面
+        goEdit: function(){
+            if (this.nowObject.status==='' || this.nowObject.status==='back'){
+                location.href='gasketEdit.html?edit=12';
+            }else{
+                location.href='gasketEdit.html?view=12';
+            }
         }
     },
     watch: {

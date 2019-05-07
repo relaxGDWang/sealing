@@ -1,6 +1,8 @@
 @charset "UTF-8";
 .outFrame { background: #f0f0f0; width: 100%; height: 100%; overflow: hidden; position: relative; padding: 10px; }
 
+.outFrame2 { background: #f0f0f0; width: 100%; height: 100%; overflow: auto; position: relative; padding: 10px; }
+
 .infoPart { display: inline-block; width: 50%; border-left: 10px solid transparent; background: #fff; background-clip: padding-box; margin-bottom: 10px; padding: 10px; }
 .infoPart:first-child { border-left: 0; border-right: 10px solid transparent; background: #fff; }
 .infoPart .imgFace { width: 80px; float: left; position: relative; }
@@ -22,6 +24,12 @@
 .listPart h3 b { position: absolute; left: 5px; top: 5px; font-size: 12px; background: red; color: #fff; line-height: 16px; width: 16px; text-align: center; border-radius: 50%; font-weight: normal; }
 .listPart h3 .fa { font-size: 20px; color: #009688; }
 .listPart h3 .buttonDetail { position: absolute; right: 10px; top: 10px; line-height: 26px; width: 40px; text-align: center; background: #009688; color: #fff; border-radius: 4px; }
+.listPart h3 .tipMessage { float: right; font-size: 14px; padding-right: 10px; }
+.listPart h3 .tipMessage.warning { color: #ee8c00; }
+.listPart h3 .tipMessage.warning:before { color: #ffcc00; }
+.listPart h3 .folding { margin-left: 5px; position: relative; top: 1px; line-height: 30px; cursor: pointer; }
+.listPart h3 .folding.hide { transform: rotate(180deg); }
+.listPart:hover h3 { background: #D0F0ED; }
 
 .listTable { width: 100%; }
 .listTable th { background: #009688; color: #fff; }
@@ -65,7 +73,7 @@
 .pageTitle li.thin.sel { border-color: transparent; }
 .pageTitle li.thin.sel .fa:before { transform: rotate(90deg); }
 .pageTitle .buttonSearch { float: right; background: #009688; color: #fff; border-radius: 4px; line-height: 30px; padding: 0 10px; cursor: pointer; }
-.pageTitle.tiny { box-shadow: none; }
+.pageTitle.tiny { box-shadow: none; line-height: 20px; padding-bottom: 10px; }
 
 .relationPart { background: #fff; padding: 5px; overflow: hidden; border-bottom: 1px dashed #ccc; }
 .relationPart li { width: 25%; float: left; padding: 5px; }
@@ -88,14 +96,20 @@
 .cutpage { padding: 10px; text-align: center; }
 
 .formPart { background: #fff; padding: 5px; overflow: hidden; border-top: 1px solid #ccc; }
-.formPart li { width: 33%; float: left; padding: 5px; white-space: nowrap; }
-.formPart li > label { display: inline-block; width: 100px; margin-right: 10px; text-align: right; }
-.formPart li > label.request:before, .formPart li > span.request:before { content: '*'; font-size: 18px; color: red; font-weight: bold; }
-.formPart li > label.down { position: relative; top: 5px; }
-.formPart li > .el-input, .formPart li > .el-select { width: calc(100% - 110px); max-width: 320px; }
-.formPart li > .el-checkbox-group { display: inline-block; }
-.formPart li.r2 { width: 66%; }
-.formPart li.r3 { width: 100%; }
+.listPart:hover .formPart { background: #EEFFFD; border-top-color: #009688; }
+.formPart > li { width: 33%; float: left; padding: 5px; white-space: nowrap; }
+.formPart > li > label { display: inline-block; width: 100px; margin-right: 10px; text-align: right; }
+.formPart > li > label.request:before, .formPart > li > span.request:before { content: '*'; font-size: 18px; color: red; font-weight: bold; }
+.formPart > li > label.down { position: relative; top: 5px; }
+.formPart > li > label.up { position: relative; top: -90px; }
+.formPart > li > .el-input, .formPart > li > .el-select, .formPart > li .el-textarea { width: calc(100% - 110px); max-width: 320px; }
+.formPart > li > .el-checkbox-group { display: inline-block; }
+.formPart > li.r2 { width: 66%; }
+.formPart > li.r3 { width: 100%; }
+.formPart > li.r3 .el-textarea { width: calc(100% - 110px); max-width: 900px; }
+.formPart > li.cll { clear: left; }
+.formPart > li.clr { clear: right; }
+.formPart > li.cla { clear: both; }
 .formPart .typeSelect > .show1 { width: 60px; }
 .formPart .typeSelect > .show0 { width: 100px; }
 .formPart .typeSelect > span { margin-left: 10px; margin-right: 5px; }
@@ -103,6 +117,16 @@
 .formPart .typeSelect > .el-input { width: calc(100% - 240px); min-width: 70px; max-width: 208px; }
 .formPart .gasketSelect > .level1 { width: 50%; max-width: 220px; min-width: 80px; }
 .formPart .gasketSelect > .level2 { width: 40%; max-width: 140px; min-width: 70px; }
+.formPart .showWarning { color: #ee8c00; }
+.formPart .showWarning:before { color: #ffcc00; }
+.formPart .inputSelect > .el-input { width: calc(100% - 190px); max-width: 260px; }
+.formPart .inputSelect > .el-select { width: 80px; }
+.formPart .inputInput > .el-input { width: calc(50% - 95px); max-width: 130px; }
+.formPart .inputInput .el-input__inner { padding: 0 5px; }
+.formPart .inputInput > span { margin-left: 15px; margin-right: 10px; }
+
+.imgShow img { display: block; max-width: 90%; max-height: 400px; min-width: 350px; margin: 0 auto; }
+.imgShow.tall img { max-height: 600px; }
 
 @media screen and (max-width: 900px) { .infoPart { width: 100%; border-left: 0; border-right: 0; }
   .relationPart li { width: 50%; }

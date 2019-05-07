@@ -111,7 +111,7 @@
     </div>
     <ul class="listOPMenu nohead" ref="menu" v-if="selID!==''" :style="getStyle">
         <li v-if="(power===3 || power==1) && menu==='list'"><span class="fa fa-envelope"></span> 提交审核</li>
-        <li><span class="fa fa-pencil"></span> 查看信息</li>
+        <li @click="goEdit()"><span class="fa fa-pencil"></span> 查看信息</li>
         <li v-if="(power===3 || power==2) && menu==='list'"><span class="fa fa-bitbucket"></span> 删除信息</li>
         <li v-if="menu==='list2'"><span class="fa fa-arrow-circle-left"></span> 引用信息</li>
         <li v-if="menu==='list'"><span class="fa fa-list-alt"></span> 操作日志</li>

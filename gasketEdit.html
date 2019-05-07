@@ -21,7 +21,7 @@
     <!-- endbuild -->
 </head>
 <body>
-<div id="app" class="outFrame">
+<div id="app" class="outFrame2">
     <div class="pageTitle tiny">
         <div class="position fa fa-map-marker">测量信息 &gt; 垫片 > 新增信息</div>
     </div>
@@ -45,7 +45,7 @@
                 <label class="request">工单号</label><el-input placeholder="请输入内容"></el-input>
             </li>
             <li>
-                <label class="request">物料编码</label><el-input placeholder="请输入内容"></el-input>
+                <label>物料编码</label><el-input placeholder="请输入内容"></el-input>
             </li>
             <li>
                 <label class="request down">测量对象</label><el-checkbox-group v-model="search.object">
@@ -62,7 +62,7 @@
     </div>
 
     <div class="listPart">
-        <h3>垫片信息</h3>
+        <h3>垫片信息 <span class="fa fa-chevron-down folding" @click="folding($event)"></span></h3>
         <ul class="formPart nohead">
             <li class="gasketSelect r2">
                 <label :class="{'request':isRequest}">垫片类型</label><el-select placeholder="请选择" v-model="search.gasketType" class="level1">
@@ -79,11 +79,88 @@
                 <label :class="{'request':isRequest2}">上传附件</label><el-input type="file" placeholder="请选择上传文件" v-model="search.upload1"></el-input>
                 <el-button type="info" @click="search.upload1=''">取消</el-button>
             </li>
-            <li class="r3">
-                <div><label :class="{'request':}">填写尺寸信息</label></div>
-                <div></div>
+            <li class="r3" v-if="isRequest && !isRequest2">
+                <label :class="{'request':!isRequest2}">填写尺寸信息</label><span class="fa fa-warning showWarning" v-if="!search.gasketType"> 请先选择一个垫片类型</span>
+            </li>
+            <li class="imgShow r3" v-if="isRequest && getTypeObject">
+                <img :src="'style/images/'+getTypeObject.img" v-if="getTypeObject.img"/>
             </li>
         </ul>
+    </div>
+
+    <div class="listPart">
+        <h3>法兰信息 <span class="fa fa-chevron-down folding" @click="folding($event)"></span></h3>
+        <ul class="formPart nohead">
+            <li class="r2">
+                <label :class="{'request':isRequestB}">法兰类型</label><el-select placeholder="请选择" v-model="search.flangeType">
+                    <el-option v-for="item in flangeType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+            </li>
+            <li>
+                <label>法兰材质</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li class="r3">
+                <label :class="{'request':isRequest2B}">上传附件</label><el-input type="file" placeholder="请选择上传文件" v-model="search.upload2"></el-input>
+                <el-button type="info" @click="search.upload2=''">取消</el-button>
+            </li>
+            <li class="r3" v-if="isRequestB && !isRequest2B">
+                <label :class="{'request':!isRequest2B}">填写尺寸信息</label><span class="fa fa-warning showWarning" v-if="!search.flangeType"> 请先选择一个法兰类型</span>
+            </li>
+            <li class="imgShow r3" v-if="isRequestB && getTypeObjectB" :class="getTypeObjectB.class">
+                <img :src="'style/images/'+getTypeObjectB.img" v-if="getTypeObjectB.img"/>
+            </li>
+        </ul>
+    </div>
+
+    <div class="listPart">
+        <h3>螺栓信息 <span class="fa fa-chevron-down folding" @click="folding($event)"></span><span class="fa fa-warning tipMessage warning"> 如果需要计算扭矩，请填写螺栓信息</span></h3>
+        <ul class="formPart nohead">
+            <li>
+                <label>螺栓规格</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li>
+                <label>螺栓数量</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li>
+                <label>螺栓材质</label><el-select placeholder="请选择" v-model="search.bolt">
+                    <el-option v-for="item in boltMaterial" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+            </li>
+        </ul>
+    </div>
+
+    <div class="listPart">
+        <h3>其他信息 <span class="fa fa-chevron-down folding" @click="folding($event)"></span><span class="tipMessage"><el-checkbox v-model="search.showDetails">填写详情</el-checkbox></span></h3>
+        <ul class="formPart nohead">
+            <li class="inputSelect" v-if="search.showDetails">
+                <label>设计压力</label><el-input placeholder="请输入内容"></el-input><el-select placeholder="请选择" v-model="search.unit1">
+                    <el-option v-for="item in unit1" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+            </li>
+            <li class="inputSelect" v-if="search.showDetails">
+                <label>设计温度</label><el-input placeholder="请输入内容"></el-input><el-select placeholder="请选择" v-model="search.unit2">
+                    <el-option v-for="item in unit2" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                </el-select>
+            </li>
+            <li class="inputInput cll" v-if="search.showDetails">
+                <label>工作压力</label><el-input placeholder="请输入内容"></el-input><span>压力交变</span><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li class="inputInput clr" v-if="search.showDetails">
+                <label>工作温度</label><el-input placeholder="请输入内容"></el-input><span>温度交变</span><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li class="cll" v-if="search.showDetails">
+                <label>流通介质</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li class="r3">
+                <label class="up">备注信息</label><el-input type="textarea" :rows="5" placeholder="请输入内容"></el-input>
+            </li>
+        </ul>
+    </div>
+
+    <div class="buttonBar">
+        <el-button type="info">取消编辑</el-button>
+        <el-button type="primary">保存测量信息</el-button>
+        <el-button type="primary">保存并提交审核</el-button>
     </div>
 </div>
 <!-- build:js library/js/webcommon.js -->
