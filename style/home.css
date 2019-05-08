@@ -29,6 +29,7 @@
 .listPart h3 .tipMessage.warning:before { color: #ffcc00; }
 .listPart h3 .folding { margin-left: 5px; position: relative; top: 1px; line-height: 30px; cursor: pointer; }
 .listPart h3 .folding.hide { transform: rotate(180deg); }
+.listPart h3 .extButton { float: right; margin-right: 10px; position: relative; top: 4px; line-height: 30px; cursor: pointer; background: #009688; color: #fff; padding: 0 5px; border-radius: 4px; }
 .listPart:hover h3 { background: #D0F0ED; }
 
 .listTable { width: 100%; }
@@ -78,7 +79,15 @@
 .relationPart { background: #fff; padding: 5px; overflow: hidden; border-bottom: 1px dashed #ccc; }
 .relationPart li { width: 25%; float: left; padding: 5px; }
 .relationPart li > label { display: inline-block; width: 60px; margin-right: 10px; text-align: right; }
-.relationPart li > .el-input, .relationPart li > .el-select { width: calc(100% - 70px); max-width: 200px; }
+.relationPart li > .el-input, .relationPart li > .el-select, .relationPart li > .el-radio-group { width: calc(100% - 70px); max-width: 200px; }
+.relationPart li > .el-radio-group { white-space: nowrap; }
+.relationPart li > .el-radio-group .el-radio-button__inner { padding-left: 8px; padding-right: 8px; }
+.relationPart > li.r2 { width: 50%; }
+.relationPart > li.r3 { width: 75%; }
+.relationPart > li.r4 { width: 100%; }
+.relationPart > li.cll { clear: left; }
+.relationPart > li.clr { clear: right; }
+.relationPart > li.cla { clear: both; }
 
 .listShow { background: #fff; }
 
@@ -127,6 +136,16 @@
 
 .imgShow img { display: block; max-width: 90%; max-height: 400px; min-width: 350px; margin: 0 auto; }
 .imgShow.tall img { max-height: 600px; }
+
+.centerBlock { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: repeating-linear-gradient(45deg, #EDB506 0, #EDB506 25px, #000 25px, #000 50px); padding: 10px; border-radius: 20px; }
+.centerBlock .inside { border-radius: 20px; background: #fff; overflow: hidden; padding: 5px; }
+.centerBlock img { float: left; width: 130px; margin-right: 15px; }
+.centerBlock h1 { margin-left: 145px; padding-top: 30px; font-size: 28px; width: 500px; }
+.centerBlock h2 { margin-left: 145px; padding-top: 15px; font-size: 18px; width: 500px; font-weight: normal; color: #666; }
+
+.recommend > li > label { vertical-align: middle; }
+.recommend > li .inputItem { vertical-align: middle; display: inline-block; width: calc(100% - 110px); max-width: 320px; white-space: normal; }
+.recommend > li .inputItem .tips { display: inline-block; width: 100%; font-size: 12px; padding-bottom: 3px; color: #ff9900; }
 
 @media screen and (max-width: 900px) { .infoPart { width: 100%; border-left: 0; border-right: 0; }
   .relationPart li { width: 50%; }

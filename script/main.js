@@ -8,9 +8,10 @@ var vu=new Vue({
             user:'user.html',
             position:'position.html',
             gasket:'gasket.html',
-            fill:'fill.html',
-            oring:'oring.html',
-            matel:'matel.html'
+            fill:'buliding.html',
+            oring:'buliding.html',
+            matel:'buliding.html',
+            check:'check.html'
         },
         page:''
     },

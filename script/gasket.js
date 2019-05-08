@@ -81,10 +81,14 @@ var vu=new Vue({
         },
         //跳转到编辑/查看页面
         goEdit: function(){
-            if (this.nowObject.status==='' || this.nowObject.status==='back'){
-                location.href='gasketEdit.html?edit=12';
+            if (this.menu==='list'){
+                if (this.nowObject.status==='' || this.nowObject.status==='back'){
+                    location.href='gasketEdit.html?edit=12';
+                }else{
+                    location.href='gasketShow.html?view=12';
+                }
             }else{
-                location.href='gasketEdit.html?view=12';
+                location.href='gasketShow.html?source=12';
             }
         }
     },

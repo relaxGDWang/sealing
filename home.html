@@ -39,14 +39,14 @@
     </div>
 
     <div class="listPart surveyList" v-if="user.type==='user'">
-        <h3><span class="fa fa-user-md"></span> 待处理测量信息<b>{{surveylist.length}}</b><span class="buttonDetail fa fa-angle-double-right" title="查看详情"></span></h3>
+        <h3><span class="fa fa-user-md"></span> 待处理测量信息<b>{{surveylist.length}}</b><a href="gasket.html" class="buttonDetail fa fa-angle-double-right" title="查看详情"></a></h3>
         <el-table :data="surveylist" border class="listTable">
             <el-table-column label="#" width="40" key="colIndex">
                 <template slot-scope="scope">
                     <span>{{scope.$index+1}}</span>
                 </template>
             </el-table-column>
-            <el-table-column prop="status" label="状态">
+            <el-table-column prop="status" label="状态" width="85">
                 <template slot-scope="scope">
                     <span class="status" :class="scope.row.status"></span>
                 </template>
@@ -59,7 +59,7 @@
             <el-table-column prop="recordtime" label="记录时间" width="150"></el-table-column>
             <el-table-column fixed="right" label="操作" width="50">
                 <template slot-scope="scope">
-                    <span class="fa fa-eye"></span>
+                    <span class="fa fa-eye opButton" @click="location.href='gasketEdit.html?edit=11'"></span>
                 </template>
             </el-table-column>
         </el-table>

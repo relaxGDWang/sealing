@@ -48,6 +48,7 @@
     }
     .folding{ margin-left:5px; position:relative; top:1px; line-height:30px; cursor:pointer;}
     .folding.hide{ transform:rotate(180deg);}
+    .extButton{ float:right; margin-right:10px; position:relative; top:4px; line-height:30px; cursor:pointer; background:$color1; color:#fff; padding:0 5px; border-radius:$borderRadius;}
   }
   &:hover h3{ background:$color5;}
 }
@@ -124,8 +125,18 @@
   li{
     width:25%; float:left; padding:5px;
     >label{ display:inline-block; width:60px; margin-right:10px; text-align:right;}
-    >.el-input, >.el-select{ width:calc(100% - 70px); max-width:200px;}
+    >.el-input, >.el-select, >.el-radio-group{ width:calc(100% - 70px); max-width:200px;}
+    >.el-radio-group{
+      white-space: nowrap;
+      .el-radio-button__inner{ padding-left:8px; padding-right:8px;}
+    }
   }
+  >li.r2{ width:50%;}
+  >li.r3{width:75%;}
+  >li.r4{ width:100%;}
+  >li.cll{ clear:left;}
+  >li.clr{ clear:right;}
+  >li.cla{ clear:both;}
 }
 
 //列表内容框
@@ -211,6 +222,26 @@
 .imgShow{
   img{ display:block; max-width:90%; max-height:400px; min-width:350px; margin:0 auto;}
   &.tall img{ max-height:600px;}
+}
+
+//网站建设中
+.centerBlock{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:repeating-linear-gradient(45deg,#EDB506 0,#EDB506 25px, #000 25px, #000 50px); padding:10px; border-radius:20px;
+  .inside{ border-radius:20px; background:#fff; overflow:hidden; padding:5px;}
+  img{ float:left; width:130px; margin-right:15px;}
+  h1{ margin-left:145px; padding-top:30px; font-size:28px; width:500px;}
+  h2{ margin-left:145px; padding-top:15px; font-size:18px; width:500px; font-weight:normal; color:#666;}
+}
+
+//推荐列表
+.recommend{
+  >li{
+    >label{ vertical-align:middle;}
+    .inputItem{
+      vertical-align:middle; display:inline-block; width:calc(100% - 110px); max-width:320px; white-space: normal;
+      .tips{ display:inline-block; width:100%; font-size:12px; padding-bottom:3px; color:#ff9900;}
+    }
+  }
 }
 
 @media screen and (max-width:900px){

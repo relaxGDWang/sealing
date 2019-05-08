@@ -15,7 +15,15 @@ var vu=new Vue({
             num:'',
             showDetails:false,
             unit1:'1',
-            unit2:'1'
+            unit2:'1',
+            positionCode:'',  //功位
+            roundNumber:'',  //大修轮次
+            no:'',  //工单编号
+            productCode:'', //物料编号
+            gasketMaterial:'',  //垫片材质
+            flangeMaterial:'',  //法兰材质
+            boltInfo:'', //螺栓规格
+            bak:'' //备注信息
         },
         fillType:[
             {value:'1', label:'大修'},
@@ -157,5 +165,28 @@ var vu=new Vue({
     beforeMount: function () {
         var result=getUserInformation();
         Vue.set(this,'user',result);
+        var id=getUrlQuery('edit');
+        if (id){
+            var temp=this.search;
+            temp.fillType='1';
+            temp.object=['gasket'];
+            temp.standard='0';
+            temp.gasketType='2';
+            temp.gasketSubType='21';
+            temp.flangeType='';
+            temp.upload1='';
+            temp.upload2='';
+            temp.bolt='';
+            temp.num='';
+            temp.showDetails=false;
+            temp.positionCode='Y5CEX-101-BA';  //功位
+            temp.roundNumber='Y5001';  //大修轮次
+            temp.no='20190423002';  //工单编号
+            temp.productCode=''; //物料编号
+            temp.gasketMaterial='';  //垫片材质
+            temp.flangeMaterial='';  //法兰材质
+            temp.boltInfo=''; //螺栓规格
+            temp.bak='推荐使用 BMCSG核级石墨垫片'; //备注信息
+        }
     }
 });

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>密封邦--测量信息审核列表</title>
+    <!-- build:css /library/style/webcommon.css -->
+    <link rel="stylesheet" href="library/style/font-awesome.css"/>
+    <link rel="stylesheet" href="library/style/elementui2.4.11.css"/>
+    <link rel="stylesheet" href="library/style/cssreset3.css"/>
+    <!-- endbuild -->
+    <!-- build:css /style/main.css -->
+    <link rel="stylesheet" href="style/home.css"/>
+    <!-- endbuild -->
+    <!-- build:js script/configBG.js -->
+    <script src="script/configBG.js"></script>
+    <!-- endbuild -->
+    <!-- build:js script/common.js -->
+    <script src="script/common.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+<div id="app" class="outFrame">
+    <div class="pageTitle">
+        <div class="position fa fa-map-marker">测量信息审核</div>
+        <ul class="menuBar nohead">
+            <li :class="{'sel':showFlag('list')}" @click="changeItem('list')">待审核</li>
+            <li :class="{'sel':showFlag('finished')}" @click="changeItem('finished')">审核成功</li>
+        </ul>
+        <span class="fa fa-search buttonSearch"> 搜索</span>
+    </div>
+    <ul class="relationPart nohead">
+        <li>
+            <label>测量类型</label><el-select placeholder="请选择">
+                <el-option v-for="item in selType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
+        <li v-if="menu==='list'">
+            <label>审核状态</label><el-select placeholder="请选择">
+                <el-option v-for="item in selStatus" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
+        <li>
+            <label>录入人</label><el-select placeholder="请选择">
+                <el-option v-for="item in selUser" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
+        <li v-if="menu==='finished'">
+            <label>审核人</label><el-select placeholder="请选择">
+                <el-option v-for="item in selChecker" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
+        <li class="cll">
+            <label>大修轮次</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>工单号</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>功位</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li v-if="menu==='list'">
+            <label>推荐产品</label><el-select placeholder="请选择">
+                <el-option v-for="item in selRecommend" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
+        <li v-if="menu==='finished'">
+            <label>是否采购</label><el-select placeholder="请选择">
+            <el-option v-for="item in selOrder" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        </el-select>
+        </li>
+    </ul>
+
+    <div class="listShow surveyList" v-if="menu==='list'">
+        <el-table :data="checklist" border class="listTable">
+            <el-table-column label="#" width="40" key="colIndex">
+                <template slot-scope="scope">
+                    <span>{{scope.$index+1}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="status" label="状态" width="85" key="status">
+                <template slot-scope="scope">
+                    <span class="status" :class="scope.row.status"></span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="round" label="大修轮次" key="round"></el-table-column>
+            <el-table-column prop="number" label="工单号" key="number"></el-table-column>
+            <el-table-column prop="position" label="功位" key="position"></el-table-column>
+            <el-table-column prop="maintype" label="测量" key="maintype"></el-table-column>
+            <el-table-column prop="type" label="类型" key="type"></el-table-column>
+            <el-table-column prop="recordtime" label="测量时间" width="140" key="recordtime"></el-table-column>
+            <el-table-column prop="recorder" label="录入人" width="85" key="recorder"></el-table-column>
+            <el-table-column prop="purchase" label="推荐产品" key="purchase"></el-table-column>
+            <el-table-column fixed="right" label="操作" width="50" key="op">
+                <template slot-scope="scope">
+                    <span class="fa opButton" :class="{'fa-edit':scope.row.status==='','fa-eye':scope.row.status==='back'}" @click="checkShow(scope.$index)"></span>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="cutpage">
+            <el-pagination background layout="prev, pager, next" :total="33"></el-pagination>
+        </div>
+    </div>
+
+    <div class="listShow surveyList" v-if="menu==='finished'">
+        <el-table :data="finishedlist" border class="listTable">
+            <el-table-column label="#" width="40" key="colIndex">
+                <template slot-scope="scope">
+                    <span>{{scope.$index+1}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="round" label="大修轮次" key="round"></el-table-column>
+            <el-table-column prop="number" label="工单号" key="number"></el-table-column>
+            <el-table-column prop="position" label="功位" key="position"></el-table-column>
+            <el-table-column prop="maintype" label="测量" key="maintype"></el-table-column>
+            <el-table-column prop="type" label="类型" key="type"></el-table-column>
+            <el-table-column prop="recordtime" label="测量时间" width="140" key="recordtime"></el-table-column>
+            <el-table-column prop="recorder" label="录入人" width="85" key="recorder"></el-table-column>
+            <el-table-column prop="purchase" label="推荐产品" width="150" key="purchase"></el-table-column>
+            <el-table-column prop="checker" label="审核人" key="checker"></el-table-column>
+            <el-table-column prop="checktime" label="审核时间" width="140" key="checktime"></el-table-column>
+            <el-table-column fixed="right" label="操作" width="50" key="op">
+                <template slot-scope="scope">
+                    <span class="fa fa-eye opButton" @click="checkShow(scope.$index)"></a>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="cutpage">
+            <el-pagination background layout="prev, pager, next" :total="43"></el-pagination>
+        </div>
+    </div>
+</div>
+<!-- build:js library/js/webcommon.js -->
+<script src="library/js/jquery.min.js"></script>
+<script src="library/js/vue.min.js"></script>
+<script src="library/js/rexfunction.js"></script>
+<script src="library/js/rexajax2.js"></script>
+<script src="library/js/rexdialog.js"></script>
+<script src="library/js/elementui2.4.11.js"></script>
+<!-- endbuild -->
+<!-- build:js  script/main.js -->
+<script src="script/check.js"></script>
+<!-- endbuild -->
+</body>
+</html>

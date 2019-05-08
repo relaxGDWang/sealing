@@ -30,7 +30,7 @@
         <h3>基本信息</h3>
         <ul class="formPart nohead">
             <li>
-                <label class="request">功能位置代码</label><el-input placeholder="请输入内容"></el-input>
+                <label class="request">功能位置代码</label><el-input v-model="search.positionCode" placeholder="请输入内容"></el-input>
             </li>
             <li class="typeSelect">
                 <label>维修类型</label><el-select placeholder="请选择" v-model="search.fillType" :class="'show'+search.fillType">
@@ -38,14 +38,14 @@
                 </el-select>
                 <template v-if="search.fillType==='1'">
                     <span class="request">轮次</span>
-                    <el-input placeholder="请输入内容"></el-input>
+                    <el-input v-model="search.roundNumber" placeholder="请输入内容"></el-input>
                 </template>
             </li>
             <li>
-                <label class="request">工单号</label><el-input placeholder="请输入内容"></el-input>
+                <label class="request">工单号</label><el-input v-model="search.no" placeholder="请输入内容"></el-input>
             </li>
             <li>
-                <label>物料编码</label><el-input placeholder="请输入内容"></el-input>
+                <label>物料编码</label><el-input v-model="search.productCode" placeholder="请输入内容"></el-input>
             </li>
             <li>
                 <label class="request down">测量对象</label><el-checkbox-group v-model="search.object">
@@ -73,7 +73,7 @@
                 </el-select>
             </li>
             <li>
-                <label>垫片材质</label><el-input placeholder="请输入内容"></el-input>
+                <label>垫片材质</label><el-input v-model="search.gasketMaterial" placeholder="请输入内容"></el-input>
             </li>
             <li class="r3">
                 <label :class="{'request':isRequest2}">上传附件</label><el-input type="file" placeholder="请选择上传文件" v-model="search.upload1"></el-input>
@@ -97,7 +97,7 @@
                 </el-select>
             </li>
             <li>
-                <label>法兰材质</label><el-input placeholder="请输入内容"></el-input>
+                <label>法兰材质</label><el-input v-model="search.flangeMaterial" placeholder="请输入内容"></el-input>
             </li>
             <li class="r3">
                 <label :class="{'request':isRequest2B}">上传附件</label><el-input type="file" placeholder="请选择上传文件" v-model="search.upload2"></el-input>
@@ -116,10 +116,10 @@
         <h3>螺栓信息 <span class="fa fa-chevron-down folding" @click="folding($event)"></span><span class="fa fa-warning tipMessage warning"> 如果需要计算扭矩，请填写螺栓信息</span></h3>
         <ul class="formPart nohead">
             <li>
-                <label>螺栓规格</label><el-input placeholder="请输入内容"></el-input>
+                <label>螺栓规格</label><el-input v-model="search.boltInfo" placeholder="请输入内容"></el-input>
             </li>
             <li>
-                <label>螺栓数量</label><el-input placeholder="请输入内容"></el-input>
+                <label>螺栓数量</label><el-input v-model="search.num" placeholder="请输入内容"></el-input>
             </li>
             <li>
                 <label>螺栓材质</label><el-select placeholder="请选择" v-model="search.bolt">
@@ -152,13 +152,13 @@
                 <label>流通介质</label><el-input placeholder="请输入内容"></el-input>
             </li>
             <li class="r3">
-                <label class="up">备注信息</label><el-input type="textarea" :rows="5" placeholder="请输入内容"></el-input>
+                <label class="up">备注信息</label><el-input v-model="search.bak" type="textarea" :rows="5" placeholder="请输入内容"></el-input>
             </li>
         </ul>
     </div>
 
     <div class="buttonBar">
-        <el-button type="info">取消编辑</el-button>
+        <el-button type="info" @click="history.back()">取消编辑</el-button>
         <el-button type="primary">保存测量信息</el-button>
         <el-button type="primary">保存并提交审核</el-button>
     </div>
