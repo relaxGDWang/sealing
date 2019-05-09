@@ -242,6 +242,9 @@
       .tips{ display:inline-block; width:100%; font-size:12px; padding-bottom:3px; color:#ff9900;}
     }
   }
+  &.hidden{
+    >li .tips{ display:none;}
+  }
 }
 
 @media screen and (max-width:900px){

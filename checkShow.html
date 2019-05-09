@@ -26,54 +26,7 @@
         <div class="position fa fa-map-marker">测量信息审核 &gt; 审核详细</div>
     </div>
 
-    <div class="listPart">
-        <h3>BMC产品推荐 <span class="extButton fa fa-eye"></span><span class="fa fa-legal extButton"></span></h3>
-        <ul class="formPart recommend nohead">
-            <li>
-                <label class="request">名称</label><div class="inputItem">
-                    <span class="tips">平垫片-金属平垫片</span>
-                    <el-input placeholder="请输入内容"></el-input>
-                </div>
-            </li>
-            <li>
-                <label class="request">材质</label><div class="inputItem">
-                    <span class="tips">316L+石墨</span>
-                    <el-input placeholder="请输入内容"></el-input>
-                </div>
-            </li>
-            <li>
-                <label class="request">制造尺寸</label><div class="inputItem">
-                    <span class="tips">23.5*35.4*3.3</span>
-                    <el-input placeholder="请输入内容"></el-input>
-                </div>
-            </li>
-            <li>
-                <label>推荐力矩</label><div class="inputItem">
-                    <span class="tips">2.5N*m</span>
-                    <el-input placeholder="请输入内容"></el-input>
-                </div>
-            </li>
-            <li>
-                <label class="request">推荐牌号</label><div class="inputItem">
-                    <span class="tips">BMC1301金属平垫片</span>
-                    <el-input placeholder="请输入内容"></el-input>
-                </div>
-            </li>
-            <li>
-                <label>推荐形式</label><div class="inputItem">
-                    <span class="tips">--</span>
-                    <el-input placeholder="请输入内容"></el-input>
-                </div>
-            </li>
-            <li class="r3">
-                <label>备注信息</label><div class="inputItem">
-                    <span class="tips">--</span>
-                    <el-input placeholder="请输入内容"></el-input>
-                </div>
-            </li>
-        </ul>
-    </div>
-
+    <div></div>
     <div class="listPart">
         <h3>基本信息</h3>
         <ul class="formPart nohead">
@@ -141,6 +94,135 @@
                 <label>备注信息</label><b>--</b>
             </li>
         </ul>
+    </div>
+
+    <div class="listPart" v-if="op!=='view'">
+        <h3>BMC产品推荐 <span class="extButton fa" :class="{'fa-eye':show,'fa-eye-slash':!show}" @click="show=!show" title="查看/隐藏推荐信息"></span><span class="fa fa-legal extButton" title="拷贝推荐信息至输入框" v-if="show" @click="copyInfo()"></span></h3>
+        <ul class="formPart recommend nohead" :class="{'hidden':!show}">
+            <li>
+                <label class="request">名称</label><div class="inputItem">
+                    <span class="tips">{{recommend.name}}</span>
+                    <el-input v-model="nowdata.name" placeholder="请输入内容"></el-input>
+                </div>
+            </li>
+            <li>
+                <label class="request">推荐牌号</label><div class="inputItem">
+                    <span class="tips">{{recommend.recommend}}</span>
+                    <el-input v-model="nowdata.recommend" placeholder="请输入内容"></el-input>
+                </div>
+            </li>
+            <li>
+                <label>推荐形式</label><div class="inputItem">
+                    <span class="tips">{{recommend.model}}</span>
+                    <el-input v-model="nowdata.model" placeholder="请输入内容"></el-input>
+                </div>
+            </li>
+            <li>
+                <label class="request">材质</label><div class="inputItem">
+                    <span class="tips">{{recommend.material}}</span>
+                    <el-input v-model="nowdata.material" placeholder="请输入内容"></el-input>
+                </div>
+            </li>
+            <li>
+                <label class="request">制造尺寸</label><div class="inputItem">
+                    <span class="tips">{{recommend.ruler}}</span>
+                    <el-input v-model="nowdata.ruler" placeholder="请输入内容"></el-input>
+                </div>
+            </li>
+            <li>
+                <label>推荐力矩</label><div class="inputItem">
+                    <span class="tips">{{recommend.torque}}</span>
+                    <el-input v-model="nowdata.torque" placeholder="请输入内容"></el-input>
+                </div>
+            </li>
+            <li class="r3">
+                <label>备注信息</label><div class="inputItem">
+                    <span class="tips">{{recommend.bak}}</span>
+                    <el-input v-model="nowdata.bak" placeholder="请输入内容"></el-input>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="listPart" v-if="op==='view'">
+        <h3>BMC产品推荐</h3>
+        <ul class="formPart nohead">
+            <li>
+                <label>名称</label><b>{{recommend.name}}</b>
+            </li>
+            <li>
+                <label>推荐牌号</label><b>{{recommend.recommend}}</b>
+            </li>
+            <li>
+                <label>推荐形式</label><b>{{recommend.model}}</b>
+            </li>
+            <li>
+                <label>材质</label><b>{{recommend.material}}</b>
+            </li>
+            <li>
+                <label>制造尺寸</label><b>{{recommend.ruler}}</b>
+            </li>
+            <li>
+                <label>推荐力矩</label><b>{{recommend.torque}}</b>
+            </li>
+            <li class="r3">
+                <label>备注信息</label><b>{{recommend.bak}}</b>
+            </li>
+        </ul>
+    </div>
+
+    <div class="listPart" v-if="op!=='view'">
+        <h3>备件工程师审核</h3>
+        <ul class="formPart nohead">
+            <li>
+                <label class="request">质保等级</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li>
+                <label>规范等级</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+            <li class="r3">
+                <label class="request">是否采购</label><el-radio-group v-model="doorder">
+                    <el-radio-button label="1">是</el-radio-button>
+                    <el-radio-button label="0">否</el-radio-button>
+                </el-radio-group>
+            </li>
+            <li v-if="doorder==='1'">
+                <label class="request">采购数量</label><el-input-number v-model="orderNum" :min="1" :max="999" label="选择购买数量"></el-input-number>
+            </li>
+            <li v-if="doorder==='1'">
+                <label class="request">交货日期</label><el-date-picker v-model="orderDate" type="date" placeholder="选择交货日期"></el-date-picker>
+            </li>
+            <li class="r3">
+                <label>备注信息</label><el-input placeholder="请输入内容"></el-input>
+            </li>
+        </ul>
+    </div>
+
+    <div class="listPart" v-if="op==='view'">
+        <h3>备件工程师审核</h3>
+        <ul class="formPart nohead">
+            <li>
+                <label class="request">质保等级</label><b>QA</b>
+            </li>
+            <li>
+                <label>规范等级</label><b>--</b>
+            </li>
+            <li class="cll">
+                <label class="request">采购数量</label><b>10件</b>
+            </li>
+            <li>
+                <label class="request">交货日期</label><b>2019-05-03</b>
+            </li>
+            <li class="r3">
+                <label>备注信息</label><b>--</b>
+            </li>
+        </ul>
+    </div>
+
+    <div class="buttonBar">
+        <el-button type="info" @click="history.back()">{{op==='view'? '关闭详情':'取消编辑'}}</el-button>
+        <el-button type="primary" v-if="op!=='view'">通过审核</el-button>
+        <el-button type="danger" v-if="op!=='view'">审核失败</el-button>
     </div>
 </div>
 <!-- build:js library/js/webcommon.js -->

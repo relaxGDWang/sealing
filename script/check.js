@@ -68,7 +68,7 @@ var vu=new Vue({
                 var temp;
                 temp=this.checklist[index];
                 if (temp.status==='back'){
-                    location.href='checkShow.html?op=view&id=12';
+                    location.href='checkShow.html?op=view&id=11';
                 }else{
                     if (temp.purchase==='--'){
                         location.href='checkShow.html?op=edit&id=12';
