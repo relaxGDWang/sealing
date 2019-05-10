@@ -7,6 +7,8 @@ var vu=new Vue({
         orderNum: 1,
         orderDate:'',
         op:'',
+        id:'',
+        classString:'',
         recommend:{
             name:'平垫片-金属平垫片',
             recommend:'BMC1301金属平垫片',
@@ -43,12 +45,15 @@ var vu=new Vue({
         var result=getUserInformation();
         Vue.set(this,'user',result);
         this.op=getUrlQuery('op');
-        
+        this.id=getUrlQuery('id');
         if (this.op==='edit'){
             this.show=false;
             for (var x in this.recommend){
                 this.recommend[x]='--';
             }
         }
+        this.classString=this.op;
+        if (this.classString==='edithave') this.classString='edit';
+        if (this.id==='11') this.classString='back';
     }
 });

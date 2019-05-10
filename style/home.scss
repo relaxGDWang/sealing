@@ -247,6 +247,20 @@
   }
 }
 
+//审核单状态
+.allStatus{
+  position:absolute; right:25px; top:25px; z-index:5; border:3px solid #ccc; padding:6px 20px; background:rgba(255,255,255,.4); transform: rotate(30deg); outline:1px solid #999; outline-offset:2px; box-shadow:0 0 10px rgba(0,0,0,.4);
+  &.edit:before{ content:'待审核'; text-shadow:0 0 5px #fff;}
+  &.view{
+    border-color:green; color:green; outline-color:green; background:rgba(0,255,0,.1);
+    &:before{ content:'审核通过';}
+  }
+  &.back{
+    border-color:red; color:red; outline-color:red;
+    &:before{ content:'被退回';}
+  }
+}
+
 @media screen and (max-width:900px){
   .infoPart{ width:100%; border-left:0; border-right:0;}
   .relationPart li{ width:50%;}

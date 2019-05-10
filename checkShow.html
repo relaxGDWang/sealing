@@ -26,7 +26,7 @@
         <div class="position fa fa-map-marker">测量信息审核 &gt; 审核详细</div>
     </div>
 
-    <div></div>
+    <div class="allStatus" :class="classString"></div>
     <div class="listPart">
         <h3>基本信息</h3>
         <ul class="formPart nohead">
@@ -216,6 +216,14 @@
             <li class="r3">
                 <label>备注信息</label><b>--</b>
             </li>
+        </ul>
+    </div>
+
+    <div class="listPart" v-if="op==='view'">
+        <h3>审核操作记录</h3>
+        <ul class="formPart nohead">
+            <li class="r3" v-if="classString==='view'"><b>2019-04-22</b> 该测量信息已经被 备件工程师<b>王五山</b> 审核成功！</li>
+            <li class="r3" v-if="classString==='back'"><b>2019-04-24</b> 该测量信息被审核退回，原因为当前推荐产品不再满足工况需求</li>
         </ul>
     </div>
 

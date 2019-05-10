@@ -11,7 +11,8 @@ var vu=new Vue({
             fill:'buliding.html',
             oring:'buliding.html',
             matel:'buliding.html',
-            check:'check.html'
+            check:'check.html',
+            orders:'orders.html'
         },
         page:''
     },
