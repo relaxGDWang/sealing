@@ -80,7 +80,6 @@
 //订单表
 .orderList{
   .status{
-    &:before{ content:'待发货';}
     &.send{ background:$color4;}
     &.send:before{ content:'已发货';}
     &.finished{ background:#88ff88;}

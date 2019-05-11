@@ -58,7 +58,7 @@ header{
 }
 //左侧菜单
 .navList{
-  list-style:none; padding-top:10px;
+  list-style:none; padding-top:10px; overflow:auto; height:calc(100% - 50px);
   a{
     display:block; padding:.9em .5em .9em 1em; position:relative;
     &.fa:before{ position:absolute; right:.7em; top:1em; @include transitionAnimate(.5s,transform); transform-origin:50% 50%;}

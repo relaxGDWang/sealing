@@ -8,11 +8,8 @@ var vu=new Vue({
             user:'user.html',
             position:'position.html',
             gasket:'gasket.html',
-            fill:'buliding.html',
-            oring:'buliding.html',
-            matel:'buliding.html',
             check:'check.html',
-            orders:'orders.html'
+            orders:'orders.html',
         },
         page:''
     },
@@ -33,7 +30,11 @@ var vu=new Vue({
         },
         showPage: function(str){
             this.menu=str;
-            $('#mainPage').attr('src',vu.url[str]);
+            if (vu.url[str]){
+                $('#mainPage').attr('src',vu.url[str]);
+            }else{
+                $('#mainPage').attr('src','buliding.html');
+            }
         }
     },
     watch: {

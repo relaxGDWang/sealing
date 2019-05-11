@@ -196,8 +196,8 @@ function getUserInformation(obj){
         result.type=temp.type;
         result.company='阳江核电有限公司（YN）';
         result.companyFace='factory1.png';
-        result.group='中广核核电运营管理有限公司';
-        result.usercount=8;
+        result.group='中国广核电力股份有限公司';
+        result.usercount=5;
         switch(temp.type){
             case 'manager':
                 result.typename='管理员';
