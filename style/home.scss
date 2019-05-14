@@ -269,6 +269,7 @@
   }
 }
 
+//用于解决element UI的表格列不对齐的情况
 body .el-table th.gutter{
   display: table-cell!important;
 }
