@@ -47,4 +47,8 @@ header .extButtonBar .opButton { margin: 0 10px; }
 .navList > li.sel > ul { max-height: 280px; }
 .navList li.active { background: #009688; color: #fff; }
 
+.admFrame.hide header { margin-left: 0; }
+.admFrame.hide .mainContent { margin-left: 0; }
+.admFrame.hide .leftSide { width: 0; overflow: hidden; }
+
 /*# sourceMappingURL=main.css.map */

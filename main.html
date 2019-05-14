@@ -21,10 +21,10 @@
     <!-- endbuild -->
 </head>
 <body>
-<div id="app" class="admFrame">
+<div id="app" class="admFrame" :class="frameClass">
     <header>
-        <span class="fa fa-dedent opButton" title="展开&#47;收缩左侧菜单"></span>
-        <span class="fa fa-refresh opButton" title="刷新当前页面"></span>
+        <span class="fa opButton" :class="{'fa-dedent':frameClass==='','fa-indent':frameClass==='hide'}" title="展开&#47;收缩左侧菜单" @click="changeLeftSide()"></span>
+        <span class="fa fa-refresh opButton" title="刷新当前页面" @click="refreshPage()"></span>
         <div class="extButtonBar">
             <span class="fa fa-check-square-o opButton" title="测量信息审核"></span>
             <span class="fa fa-upload opButton" title="上传列表"></span>

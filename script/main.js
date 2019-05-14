@@ -1,6 +1,7 @@
 var vu=new Vue({
     el: '#app',
     data:{
+        frameClass:'',
         menu:'home',
         user:{},
         url:{
@@ -10,6 +11,7 @@ var vu=new Vue({
             gasket:'gasket.html',
             check:'check.html',
             orders:'orders.html',
+            search: 'search.html'
         },
         page:''
     },
@@ -35,6 +37,18 @@ var vu=new Vue({
             }else{
                 $('#mainPage').attr('src','buliding.html');
             }
+        },
+        //隐藏显示左侧菜单栏
+        changeLeftSide: function(){
+            if (this.frameClass==='hide'){
+                this.frameClass='';
+            }else{
+                this.frameClass='hide';
+            }
+        },
+        //刷新主框架页面
+        refreshPage: function(){
+            $('#mainPage').attr('src',vu.url[vu.menu]);
         }
     },
     watch: {

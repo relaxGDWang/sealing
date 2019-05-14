@@ -88,3 +88,9 @@ header{
   li.active{ background:$color1; color:#fff;}
 }
 
+.admFrame.hide{
+  header{ margin-left:0;}
+  .mainContent{ margin-left:0;}
+  .leftSide{ width:0; overflow:hidden;}
+}
+

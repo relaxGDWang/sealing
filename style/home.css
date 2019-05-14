@@ -42,6 +42,12 @@
 .listTable.el-table th, .listTable.el-table td { border-color: #fff; }
 .listTable .status { display: inline-block; width: 60px; text-align: center; line-height: 28px; background: #ccc; border-radius: 4px; }
 .listTable .opButton { cursor: pointer; }
+.listTable .el-table__expanded-cell { padding-left: 10px; padding-right: 10px; }
+
+.rexTable th { background: #5a94e3; text-align: center; }
+.rexTable td { text-align: center; }
+.rexTable tr:nth-child(even) { background: #eaf3ff; }
+.rexTable tr:nth-child(odd) { background: #d7e7fd; }
 
 .surveyList .status:before { content: '未提交'; }
 .surveyList .status.back { background: red; color: #fff; }
@@ -154,8 +160,12 @@
 .allStatus.back { border-color: red; color: red; outline-color: red; }
 .allStatus.back:before { content: '被退回'; }
 
+body .el-table th.gutter { display: table-cell !important; }
+
 @media screen and (max-width: 900px) { .infoPart { width: 100%; border-left: 0; border-right: 0; }
   .relationPart li { width: 50%; }
+  .relationPart li.r2 { width: 100%; }
+  .relationPart li.r3 { width: 100%; }
   .formPart li { width: 50%; }
   .formPart li.r2 { width: 100%; } }
 @media screen and (max-width: 620px) { .relationPart li { width: 100%; }

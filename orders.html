@@ -21,7 +21,7 @@
     <!-- endbuild -->
 </head>
 <body>
-<div id="app" class="outFrame">
+<div id="app" class="outFrame2">
     <div class="pageTitle">
         <div class="position fa fa-map-marker">采购订单</div>
         <ul class="menuBar nohead">
@@ -31,66 +31,123 @@
         <span class="fa fa-search buttonSearch"> 搜索</span>
     </div>
     <ul class="relationPart nohead">
-
+        <li v-if="menu==='order'">
+            <label>状态</label><el-select placeholder="请选择">
+                <el-option v-for="item in selStatus" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
+        <li v-if="menu==='order'">
+            <label>快递单号</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li class="r2" v-if="menu==='order'">
+            <label>发货日期</label><el-date-picker v-model="orderDate" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
+        </li>
+        <li class="cll">
+            <label>大修编号</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>工单号</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>功位</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>物料编码</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>质保等级</label><el-input placeholder="请输入内容"></el-input>
+        </li>
+        <li>
+            <label>使用部门</label><el-select placeholder="请选择">
+                <el-option v-for="item in department" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+        </li>
     </ul>
-    <el-table :data="orderlist" border class="orderList listTable">
-        <el-table-column label="展开" width="50" key="openshow">
-            <template slot-scope="scope">
-                <span class="fa fa-plus-square-o"></span>
-            </template>
-        </el-table-column>
-        <el-table-column prop="status" label="状态" width="84" key="status">
-            <template slot-scope="scope">
-                <span class="status" :class="scope.row.status"></span>
-            </template>
-        </el-table-column>
-        <el-table-column prop="orderID" label="快递单" key="orderID"></el-table-column>
-        <el-table-column prop="orderName" label="快递公司" key="orderName"></el-table-column>
-        <el-table-column prop="kind" label="产品种类" key="kind"></el-table-column>
-        <el-table-column prop="ordertime" label="下单时间" key="ordertime"></el-table-column>
-        <el-table-column prop="finishedtime" label="完成时间" key="finishedtime"></el-table-column>
-        <el-table-column fixed="right" label="操作" width="50" key="op">
-            <template slot-scope="scope">
-                <span class="fa fa-eye"></span>
-            </template>
-        </el-table-column>
-        <el-table-column type="expand" key="colExt" width="0">
-            <template slot-scope="scope">
-                <table class="rexTable">
-                    <thead>
-                    <tr>
-                        <th width="30">#</th>
-                        <th>大修编号</th>
-                        <th>工单号</th>
-                        <th>功位</th>
-                        <th>物料编码</th>
-                        <th>产品描述</th>
-                        <th>材质</th>
-                        <th>尺寸</th>
-                        <th>质保等级</th>
-                        <th>采购数量</th>
-                        <th>使用部门</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="(item,index) in orderlistDetails[scope.row.id]">
-                        <td>{{index+1}}</td>
-                        <td>{{item.round}}</td>
-                        <td>{{item.number}}</td>
-                        <td>{{item.position}}</td>
-                        <td>{{item.product}}</td>
-                        <td>{{item.description}}</td>
-                        <td>{{item.material}}</td>
-                        <td>{{item.ruler}}</td>
-                        <td>{{item.level}}</td>
-                        <td>{{item.count}}</td>
-                        <td>{{item.department}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </template>
-        </el-table-column>
-    </el-table>
+    <div class="orderList"  v-if="menu==='order'">
+        <el-table :data="orderlist" ref="myTable" border class="listTable" @row-click="getDetailShow">
+            <el-table-column label="展开" width="50" key="openShow">
+                <template slot-scope="scope">
+                    <span class="fa" :class="{'fa-plus-square-o':!scope.row.show,'fa-minus-square-o':scope.row.show}"></span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="status" label="状态" width="84" key="status">
+                <template slot-scope="scope">
+                    <span class="status" :class="scope.row.status"></span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="orderID" label="快递单" key="orderID"></el-table-column>
+            <el-table-column prop="orderName" label="快递公司" key="orderName"></el-table-column>
+            <el-table-column prop="kind" label="产品种类" key="kind"></el-table-column>
+            <el-table-column prop="ordertime" label="下单时间" key="ordertime"></el-table-column>
+            <el-table-column prop="finishedtime" label="完成时间" key="finishedtime"></el-table-column>
+            <el-table-column fixed="right" label="操作" width="50" key="op">
+                <template slot-scope="scope">
+                    <span class="fa fa-edit opButton" v-if="scope.row.status==='send' && user.type==='equser'" title="标记到货"></span>
+                </template>
+            </el-table-column>
+            <el-table-column type="expand" key="colExt" width="0">
+                <template slot-scope="scope">
+                    <table class="rexTable">
+                        <thead>
+                        <tr>
+                            <th width="30">#</th>
+                            <th>大修编号</th>
+                            <th>工单号</th>
+                            <th>功位</th>
+                            <th>物料编码</th>
+                            <th>产品描述</th>
+                            <th>材质</th>
+                            <th>尺寸</th>
+                            <th>质保等级</th>
+                            <th>采购数量</th>
+                            <th>使用部门</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(item,index) in orderlistDetails[scope.row.id]">
+                            <td>{{index+1}}</td>
+                            <td>{{item.round}}</td>
+                            <td>{{item.number}}</td>
+                            <td>{{item.position}}</td>
+                            <td>{{item.product}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.material}}</td>
+                            <td>{{item.ruler}}</td>
+                            <td>{{item.level}}</td>
+                            <td>{{item.count}}</td>
+                            <td>{{item.department}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </template>
+            </el-table-column>
+        </el-table>
+        <div class="cutpage">
+            <el-pagination background layout="prev, pager, next" :total="33"></el-pagination>
+        </div>
+    </div>
+    <div class="orderList" v-if="menu==='wait'">
+        <el-table :data="productlist" ref="myTable" border class="listTable">
+            <el-table-column label="#" width="40" key="colIndex">
+                <template slot-scope="scope">
+                    <span>{{scope.$index+1}}</span>
+                </template>
+            </el-table-column>
+            <el-table-column prop="round" label="大修编号" key="round2"></el-table-column>
+            <el-table-column prop="number" label="工单号" key="number2"></el-table-column>
+            <el-table-column prop="position" label="功位" key="position2"></el-table-column>
+            <el-table-column prop="product" label="物料编码" key="product2"></el-table-column>
+            <el-table-column prop="description" label="产品描述" key="description2"></el-table-column>
+            <el-table-column prop="material" label="材质" key="material2"></el-table-column>
+            <el-table-column prop="ruler" label="尺寸" key="ruler2"></el-table-column>
+            <el-table-column prop="level" label="质保等级" key="level2"></el-table-column>
+            <el-table-column prop="count" label="采购数量" key="count2"></el-table-column>
+            <el-table-column prop="department" label="使用部门" key="department2"></el-table-column>
+        </el-table>
+        <div class="cutpage">
+            <el-pagination background layout="prev, pager, next" :total="33"></el-pagination>
+        </div>
+    </div>
 </div>
 <!-- build:js library/js/webcommon.js -->
 <script src="library/js/jquery.min.js"></script>

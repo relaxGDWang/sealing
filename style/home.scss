@@ -64,6 +64,15 @@
   &.el-table th, &.el-table td{ border-color:#fff;}
   .status{display:inline-block; width:60px; text-align:center; line-height:28px; background:#ccc; border-radius:$borderRadius;}
   .opButton{ cursor:pointer;}
+  //扩展菜单
+  .el-table__expanded-cell{ padding-left:10px; padding-right:10px;}
+}
+//二级表格
+.rexTable{
+  th{ background:#5a94e3; text-align:center;}
+  td{ text-align:center;}
+  tr:nth-child(even){ background: #eaf3ff;}
+  tr:nth-child(odd){ background: #d7e7fd;}
 }
 //测量表
 .surveyList{
@@ -260,9 +269,15 @@
   }
 }
 
+body .el-table th.gutter{
+  display: table-cell!important;
+}
+
 @media screen and (max-width:900px){
   .infoPart{ width:100%; border-left:0; border-right:0;}
   .relationPart li{ width:50%;}
+  .relationPart li.r2{ width:100%;}
+  .relationPart li.r3{width:100%;}
   .formPart li{ width:50%;}
   .formPart li.r2{ width:100%;}
 }

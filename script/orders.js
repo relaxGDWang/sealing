@@ -2,13 +2,26 @@ var vu=new Vue({
     el: '#app',
     data:{
         user:{},
-        menu:'order',  //wait
+        menu:'order',  //wait,
+        orderDate:'',
+        department:[
+            {value:'', label:''},
+            {value:'1', label:'机械部'},
+            {value:'2', label:'电气部'},
+            {value:'3', label:'仪表部'},
+            {value:'4', label:'工改部'}
+        ],
+        selStatus:[
+            {value:'', label:''},
+            {value:'1', label:'已发货'},
+            {value:'2', label:'完成'}
+        ],
         orderlist:[
-            {id:12,status:'send',orderID:'180174741112',orderName:'顺丰','kind':3,ordertime:'2019-04-07 15:33',finishedtime:'--'},
-            {id:13,status:'send',orderID:'180174273413',orderName:'顺丰','kind':2,ordertime:'2019-04-10 16:41',finishedtime:'--'},
-            {id:14,status:'finished',orderID:'180155641112',orderName:'顺丰','kind':1,ordertime:'2019-04-07 15:33',finishedtime:'2019-04-09 16:13'},
-            {id:15,status:'finished',orderID:'189808341112',orderName:'德邦','kind':2,ordertime:'2019-04-07 15:33',finishedtime:'2019-04-10 09:34'},
-            {id:16,status:'finished',orderID:'188777103112',orderName:'德邦','kind':3,ordertime:'2019-04-07 15:33',finishedtime:'2019-04-10 09:43'}
+            {id:12,status:'send',orderID:'180174741112',orderName:'顺丰','kind':3,ordertime:'2019-04-07 15:33',finishedtime:'--',show:false},
+            {id:13,status:'send',orderID:'180174273413',orderName:'顺丰','kind':2,ordertime:'2019-04-10 16:41',finishedtime:'--',show:false},
+            {id:14,status:'finished',orderID:'180155641112',orderName:'顺丰','kind':1,ordertime:'2019-04-07 15:33',finishedtime:'2019-04-09 16:13',show:false},
+            {id:15,status:'finished',orderID:'189808341112',orderName:'德邦','kind':2,ordertime:'2019-04-07 15:33',finishedtime:'2019-04-10 09:34',show:false},
+            {id:16,status:'finished',orderID:'188777103112',orderName:'德邦','kind':3,ordertime:'2019-04-07 15:33',finishedtime:'2019-04-10 09:43',show:false}
         ],
         orderlistDetails:{
             '12':[
@@ -68,40 +81,17 @@ var vu=new Vue({
             }
         },
         //展开隐藏详细
-        showDetails: function(row, event){  //获得入库单对应的检验任务
-            var obj=this.mission[this.missionKey[row.id]];
-            if (!obj.childrenLoad) {
-                var sendData = {id: obj.id};
-                this.flagReload=false;
-                ajax.send({
-                    url: PATH.importDetails,
-                    data: sendData,
-                    success: function (data) {
-                        dialog.close('loading');
-                        obj.childrenLoad = true;
-                        obj.children = data.bolts;
-                        for (var i=0; i<data.bolts.length; i++){
-                            data.bolts[i].position=data.bolts[i].position.split(REG.position);
-                            vu.childrenKey[data.bolts[i].bolt_id]=data.bolts[i];
-                        }
-                        if (vu.UI.expand!==obj){
-                            vu.$refs.myTable.toggleRowExpansion(obj);
-                            if (vu.UI.expand) vu.$refs.myTable.toggleRowExpansion(vu.UI.expand);
-                            vu.UI.expand=obj;
-                        }
-                    }
-                });
-            }else{
-                if (vu.UI.expand===obj){
-                    vu.UI.expand='';
-                    vu.$refs.myTable.toggleRowExpansion(obj);
-                }else{
-                    vu.$refs.myTable.toggleRowExpansion(vu.UI.expand);
-                    vu.$refs.myTable.toggleRowExpansion(obj);
-                    vu.UI.expand=obj;
+        getDetailShow: function(row, event){  //获得入库单对应的检验任务
+            var obj;
+            for (var i=0; i<this.orderlist.length; i++){
+                if (row.id===this.orderlist[i].id){
+                    obj=this.orderlist[i];
+                    break;
                 }
             }
-        },
+            obj.show=!obj.show;
+            vu.$refs.myTable.toggleRowExpansion(obj);
+        }
     },
     watch: {
     },
