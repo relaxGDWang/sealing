@@ -7,11 +7,11 @@ var vu=new Vue({
         url:{
             home:'home.html',
             user:'user.html',
-            position:'position.html',
             gasket:'gasket.html',
             check:'check.html',
             orders:'orders.html',
-            search: 'search.html'
+            search: 'search.html',
+            power:'power.html'
         },
         page:''
     },

@@ -41,7 +41,7 @@
 .listTable.el-table th { padding-top: 8px; padding-bottom: 8px; }
 .listTable.el-table th, .listTable.el-table td { border-color: #fff; }
 .listTable .status { display: inline-block; width: 60px; text-align: center; line-height: 28px; background: #ccc; border-radius: 4px; }
-.listTable .opButton { cursor: pointer; }
+.listTable .opButton { cursor: pointer; margin: 2px; }
 .listTable .el-table__expanded-cell { padding-left: 10px; padding-right: 10px; }
 
 .rexTable th { background: #5a94e3; text-align: center; }
@@ -66,6 +66,13 @@
 .userList .status:before { content: '正常'; }
 .userList .status.ban { background: red; color: #fff; }
 .userList .status.ban:before { content: '停用'; }
+
+.empowerList .status { background: #88ff88; }
+.empowerList .status:before { content: '正常'; }
+.empowerList .status.stop { background: red; color: #fff; }
+.empowerList .status.stop:before { content: '停用'; }
+.empowerList .status.expire { background: orange; color: #fff; }
+.empowerList .status.expire:before { content: '过期'; }
 
 .pageTitle { line-height: 40px; box-shadow: 0 -1px 0 0 #ccc inset; overflow: hidden; }
 .pageTitle .position { color: #666; float: left; }
@@ -159,6 +166,16 @@
 .allStatus.view:before { content: '审核通过'; }
 .allStatus.back { border-color: red; color: red; outline-color: red; }
 .allStatus.back:before { content: '被退回'; }
+
+.extMenu.bottom.orderDetails .dialogFrame { height: 70%; min-height: 290px; }
+
+.orderDetailsShow { height: 200px; overflow: hidden; border-bottom: 1px solid #ccc; }
+
+.orderBase { float: left; width: 30%; height: 100%; border-right: 1px solid #ccc; min-width: 180px; padding-right: 10px; }
+.orderBase li { padding: 6px 0; border-bottom: 1px solid #ccc; }
+.orderBase label { display: inline-block; width: 80px; text-align: right; margin-right: 5px; }
+
+.expressList { margin-left: calc(30% + 10px); height: 100%; overflow: auto; }
 
 body .el-table th.gutter { display: table-cell !important; }
 

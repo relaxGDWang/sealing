@@ -63,7 +63,7 @@
   &.el-table th{ padding-top:8px; padding-bottom:8px;}
   &.el-table th, &.el-table td{ border-color:#fff;}
   .status{display:inline-block; width:60px; text-align:center; line-height:28px; background:#ccc; border-radius:$borderRadius;}
-  .opButton{ cursor:pointer;}
+  .opButton{ cursor:pointer; margin:2px;}
   //扩展菜单
   .el-table__expanded-cell{ padding-left:10px; padding-right:10px;}
 }
@@ -102,6 +102,17 @@
     &:before{ content:'正常';}
     &.ban{ background:red; color:#fff;}
     &.ban:before{ content:'停用';}
+  }
+}
+//授权表
+.empowerList{
+  .status{
+    background:#88ff88;
+    &:before{ content:'正常';}
+    &.stop{ background:red; color:#fff;}
+    &.stop:before{ content:'停用';}
+    &.expire{ background:orange; color:#fff;}
+    &.expire:before{ content:'过期';}
   }
 }
 
@@ -267,6 +278,20 @@
     border-color:red; color:red; outline-color:red;
     &:before{ content:'被退回';}
   }
+}
+
+//订单详情的对话框
+.extMenu.bottom.orderDetails .dialogFrame{ height:70%; min-height: 290px;}
+.orderDetailsShow{
+  height:200px; overflow:hidden; border-bottom:1px solid #ccc;
+}
+.orderBase{
+  float:left; width:30%; height:100%; border-right:1px solid #ccc; min-width:180px; padding-right:10px;
+  li{ padding:6px 0; border-bottom:1px solid #ccc;}
+  label{ display:inline-block; width:80px; text-align:right; margin-right:5px;}
+}
+.expressList{
+  margin-left:calc(30% + 10px); height:100%; overflow:auto;
 }
 
 //用于解决element UI的表格列不对齐的情况

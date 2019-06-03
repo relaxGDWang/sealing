@@ -67,7 +67,7 @@ header{
   >li>a{ border-left:5px solid transparent;}
   >li{
     color:rgba(255,255,255,.8); font-size:14px;
-    &:hover{ background:#444; color:#fff;}
+    &:hover{ background-color:#444; color:#fff;}
     &:hover a{ border-left-color:$color1;}
   }
   >li>ul{
@@ -86,6 +86,8 @@ header{
   }
 
   li.active{ background:$color1; color:#fff;}
+  .splits{ height:20px; background-image:linear-gradient(90deg,rgba(255,255,255,.5) 3px, transparent 0, transparent 6px); background-repeat: repeat-x; background-position:center; background-size: 6px 1px;}
+  .splits:hover{ background-color:transparent;}
 }
 
 .admFrame.hide{

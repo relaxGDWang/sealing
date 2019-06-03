@@ -25,32 +25,116 @@ var vu=new Vue({
         ],
         orderlistDetails:{
             '12':[
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'QA1',count:5},
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCFL2400膨化聚四氟乙烯垫片',material:'膨化PTFE',ruler:'12.5*24.5*33.6*34.8*3.3',level:'QA1',count:2},
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'19280884112',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'QA1',count:10}
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'C1',count:5},
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCFL2400膨化聚四氟乙烯垫片',material:'膨化PTFE',ruler:'12.5*24.5*33.6*34.8*3.3',level:'C1',count:2},
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'19280884112',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'C1',count:10}
             ],
             '13':[
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'QA1',count:5},
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'19280884112',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'QA1',count:10}
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'C1',count:5},
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'19280884112',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'C1',count:10}
             ],
             '14':[
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCFL2400膨化聚四氟乙烯垫片',material:'膨化PTFE',ruler:'12.5*24.5*33.6*34.8*3.3',level:'QA1',count:2},
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCFL2400膨化聚四氟乙烯垫片',material:'膨化PTFE',ruler:'12.5*24.5*33.6*34.8*3.3',level:'C1',count:2},
             ],
             '15':[
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'QA1',count:5},
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'QA1',count:10}
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'C1',count:5},
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'C1',count:10}
             ],
             '16':[
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'19280884112',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'QA1',count:5},
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCFL2400膨化聚四氟乙烯垫片',material:'膨化PTFE',ruler:'12.5*24.5*33.6*34.8*3.3',level:'QA1',count:2},
-                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'QA1',count:10}
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'19280884112',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'C1',count:5},
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCFL2400膨化聚四氟乙烯垫片',material:'膨化PTFE',ruler:'12.5*24.5*33.6*34.8*3.3',level:'C1',count:2},
+                {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'C1',count:10}
             ]
         },
         productlist:[
-            {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',ruler:'30*40*3.3',level:'QA1',count:5},
-            {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCFL2400膨化聚四氟乙烯垫片',material:'膨化PTFE',ruler:'12.5*24.5*33.6*34.8*3.3',level:'QA1',count:2},
-            {round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'QA1',count:10}
-        ]
+            {from:'大修测量',orderDate:'2019-06-12',round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSWG核级石墨缠绕垫片',material:'316L+石墨',orderDate:'2019-06-12',ruler:'30*40*3.3',level:'C1',count:5},
+            {from:'正常采购',orderDate:'2019-06-13',round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCFL2400膨化聚四氟乙烯垫片',material:'膨化PTFE',ruler:'12.5*24.5*33.6*34.8*3.3',level:'C2',count:2},
+            {from:'大修测量',orderDate:'2019-06-13',round:'Y5001',number:'201904160001',position:'Y5SAT-482-WV',product:'--',department:'机械部',description:'BMCSMG核级石墨缠绕垫片',material:'304+石墨',ruler:'21.2*33.4*3.3',level:'C3',count:10}
+        ],
+        orderExpress:{
+            "company":"京东快递",
+            "com":"jd",
+            "no":"JDX000033078715",
+            "status":"1",
+            "status_detail":null,
+            "list":[
+                {
+                    "datetime":"2019-05-20 08:55:35",
+                    "remark":"货物已交付京东物流",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-20 08:55:35",
+                    "remark":"配送员徐卫东已经揽收完成",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-20 17:07:17",
+                    "remark":"货物已到达【华东外单分拣中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-20 17:08:06",
+                    "remark":"货物已到达【华东外单分拣中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-20 17:08:06",
+                    "remark":"货物已到达【华东外单分拣中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-20 17:38:13",
+                    "remark":"货物已到达【华东外单分拣中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-20 20:37:51",
+                    "remark":"货物已到达【华东外单分拣中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-20 21:09:39",
+                    "remark":"货物已到达【华东外单分拣中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-21 00:42:20",
+                    "remark":"货物已完成分拣，离开【华东外单分拣中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-23 21:18:55",
+                    "remark":"货物已到达【乌鲁木齐分拨中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-24 03:05:08",
+                    "remark":"货物已完成分拣，离开【乌鲁木齐分拨中心】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-24 08:09:31",
+                    "remark":"货物已到达【乌市黄河营业部】",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-24 08:09:32",
+                    "remark":"货物已分配，等待配送",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-24 08:59:25",
+                    "remark":"配送员开始配送，请您准备收货，配送员，陈卫星，手机号，17767683558",
+                    "zone":""
+                },
+                {
+                    "datetime":"2019-05-24 12:26:16",
+                    "remark":"货物已由本人签收，感谢您选择京东物流！",
+                    "zone":""
+                }
+            ]
+        }
     },
     computed:{
 
@@ -91,6 +175,11 @@ var vu=new Vue({
             }
             obj.show=!obj.show;
             vu.$refs.myTable.toggleRowExpansion(obj);
+        },
+        //显示快递单详细
+        showDetails: function(e){
+            dialog.open('information');
+            protectEvent(e);
         }
     },
     watch: {
@@ -100,3 +189,5 @@ var vu=new Vue({
         Vue.set(this,'user',result);
     }
 });
+
+var dialog=relaxDialog();
